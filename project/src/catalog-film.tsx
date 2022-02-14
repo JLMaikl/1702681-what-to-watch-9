@@ -1,4 +1,6 @@
-const catalogFilm = [
+
+
+const catalogFilm: {id: number}[] = [
   {
     id: 1,
   },

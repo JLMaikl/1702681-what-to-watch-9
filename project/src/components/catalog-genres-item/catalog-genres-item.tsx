@@ -1,3 +1,5 @@
+import CatalogGenre from '../catalog-genre/catalog-genre';
+
 function CatalogGenresItem() {
 
   const catalogGenresItems = [
@@ -42,19 +44,9 @@ function CatalogGenresItem() {
       active: '',
     }];
 
-  const catalogGenresItem = catalogGenresItems.map(function (item): JSX.Element {
-    return (
-      <li key={item.genre} className={`catalog__genres-item ${item.active}`}>
-        <a href='#' className='catalog__genres-link'>
-          {item.genre}
-        </a>
-      </li>
-    );
-  });
-
-
   return (
-    <>{catalogGenresItem}</>
+    <>{catalogGenresItems.map((catalogGenresItem) => <CatalogGenre genre={catalogGenresItem.genre} active={catalogGenresItem.active} key={catalogGenresItem.genre} />)} </>
+
   );
 }
 

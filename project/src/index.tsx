@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 
-const appPageProps = {
+const appPage = {
   filmCardTitle: 'The Grand Budapest Hotel',
   filmCardGenre: 'Drama',
   filmCardYear: 2014,
@@ -11,9 +11,9 @@ const appPageProps = {
 ReactDOM.render(
   <React.StrictMode>
     <App
-      filmCardTitle={appPageProps.filmCardTitle}
-      filmCardGenre={appPageProps.filmCardGenre}
-      filmCardYear={appPageProps.filmCardYear}
+      filmCardTitle={appPage.filmCardTitle}
+      filmCardGenre={appPage.filmCardGenre}
+      filmCardYear={appPage.filmCardYear}
     />
   </React.StrictMode>,
   document.getElementById('root'));
