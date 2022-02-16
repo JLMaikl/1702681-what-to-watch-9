@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Logo from '../logo/logo';
-import UserBlock from '../user-block/user-block';
+import Logo from '../../components/logo/logo';
+import UserBlock from '../../components/user-block/user-block';
 
 function AddReview(): JSX.Element {
   return (

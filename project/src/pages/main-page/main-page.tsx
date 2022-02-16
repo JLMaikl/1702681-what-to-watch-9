@@ -1,7 +1,7 @@
-import Header from '../header/header';
-import SmallFilmCard from '../small-film-card/small-film-card';
-import CatalogGenresItem from '../catalog-genres-item/catalog-genres-item';
-import Footer from '../footer/footer';
+import Header from '../../components/header/header';
+import SmallFilmCard from '../../components/small-film-card/small-film-card';
+import CatalogGenresItem from '../../components/catalog-genres-item/catalog-genres-item';
+import Footer from '../../components/footer/footer';
 
 
 type MainPageProps = {

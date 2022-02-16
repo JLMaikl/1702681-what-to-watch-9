@@ -1,7 +1,7 @@
-import Logo from '../logo/logo';
-import SmallFilmCard from '../small-film-card/small-film-card';
-import UserBlock from '../user-block/user-block';
-import Footer from '../footer/footer';
+import Logo from '../../components/logo/logo';
+import SmallFilmCard from '../../components/small-film-card/small-film-card';
+import UserBlock from '../../components/user-block/user-block';
+import Footer from '../../components/footer/footer';
 
 function MyList() {
   return (
