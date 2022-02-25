@@ -1,22 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import { BrowserRouter } from 'react-router-dom';
 import App from './components/app/app';
+import { catalogFilms } from './mocs/films';
 
-const appPage = {
-  filmCardTitle: 'The Grand Budapest Hotel',
-  filmCardGenre: 'Drama',
-  filmCardYear: 2014,
-};
 
 ReactDOM.render(
   <React.StrictMode>
-
-    <App
-      filmCardTitle={appPage.filmCardTitle}
-      filmCardGenre={appPage.filmCardGenre}
-      filmCardYear={appPage.filmCardYear}
-    />
-
+    <BrowserRouter>
+      <App catalogFilms={catalogFilms} />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'));

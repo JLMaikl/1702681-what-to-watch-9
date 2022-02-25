@@ -8,16 +8,14 @@ import Player from '../../pages/player/player';
 import SignIn from '../../pages/sign-in/sign-in';
 import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
+import { FilmType } from '../../types/types';
+
+type Props = {
+  catalogFilms: FilmType[];
+};
 
 
-type MainPageProps = {
-  filmCardTitle: string;
-  filmCardGenre: string;
-  filmCardYear: number;
-}
-
-
-function App({ filmCardTitle, filmCardGenre, filmCardYear }: MainPageProps): JSX.Element {
+function App({catalogFilms} : Props): JSX.Element {
 
   return (
     <BrowserRouter>
@@ -25,9 +23,7 @@ function App({ filmCardTitle, filmCardGenre, filmCardYear }: MainPageProps): JSX
         <Route
           path={AppRoute.Main}
           element={<MainPage
-            filmCardTitle={filmCardTitle}
-            filmCardGenre={filmCardGenre}
-            filmCardYear={filmCardYear}
+            catalogFilms={catalogFilms}
           />}
         />
         <Route
@@ -40,16 +36,15 @@ function App({ filmCardTitle, filmCardGenre, filmCardYear }: MainPageProps): JSX
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <MyList />
+              <MyList
+                catalogFilms={catalogFilms}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Films}
           element={<MoviePage
-            filmCardTitle={filmCardTitle}
-            filmCardGenre={filmCardGenre}
-            filmCardYear={filmCardYear}
+            catalogFilms={catalogFilms}
           />}
         />
         <Route

@@ -2,8 +2,13 @@ import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
+import { FilmType } from '../../types/types';
 
-function MyList() {
+type Props = {
+  catalogFilms: FilmType[];
+};
+
+function MyList({catalogFilms}: Props): JSX.Element {
   return (
     <div className='user-page'>
       <header className='page-header user-page__head'>
@@ -18,7 +23,7 @@ function MyList() {
         <h2 className='catalog__title visually-hidden'>Catalog</h2>
 
         <div className='catalog__films-list'>
-          <SmallFilmCard />
+          <SmallFilmCard catalogFilms={catalogFilms}/>
         </div>
       </section>
 
