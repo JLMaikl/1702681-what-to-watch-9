@@ -22,9 +22,7 @@ function App({catalogFilms} : Props): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage
-            catalogFilms={catalogFilms}
-          />}
+          element={<MainPage catalogFilms={catalogFilms}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -36,16 +34,13 @@ function App({catalogFilms} : Props): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <MyList
-                catalogFilms={catalogFilms}/>
+              <MyList catalogFilms={catalogFilms}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Films}
-          element={<MoviePage
-            catalogFilms={catalogFilms}
-          />}
+          element={<MoviePage catalogFilms={catalogFilms}/>}
         />
         <Route
           path={AppRoute.Filmsreview}

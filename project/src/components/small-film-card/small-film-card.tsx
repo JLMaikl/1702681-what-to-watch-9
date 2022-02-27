@@ -1,4 +1,3 @@
-import catalogFilm from '../../catalog-film';
 import SmallFilm from '../small-film/small-film';
 import { FilmType } from '../../types/types';
 
@@ -10,7 +9,7 @@ type Props = {
 function SmallFilmCard({catalogFilms}: Props): JSX.Element {
 
   return (
-    <>{catalogFilm.map((id) => <SmallFilm key={id.id} catalogFilms={catalogFilms}/>)}</>
+    <>{catalogFilms.map((item) => <SmallFilm key={item.id} catalogFilm={item}/>)}</>
   );
 }
 
