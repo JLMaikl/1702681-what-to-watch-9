@@ -4,14 +4,13 @@ import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
 import MoviePageOverview from '../../components/movie-page-overview/movie-page-overview';
 import Footer from '../../components/footer/footer';
+import { FilmType } from '../../types/types';
 
-type MainPageProps = {
-  filmCardTitle: string;
-  filmCardGenre: string;
-  filmCardYear: number;
-}
+type Props = {
+  catalogFilms: FilmType[];
+};
 
-function MoviePage({ filmCardTitle, filmCardGenre, filmCardYear }: MainPageProps): JSX.Element {
+function MoviePage({catalogFilms}: Props): JSX.Element {
   return (
     <>
       <section className='film-card film-card--full'>
@@ -29,10 +28,10 @@ function MoviePage({ filmCardTitle, filmCardGenre, filmCardYear }: MainPageProps
 
           <div className='film-card__wrap'>
             <div className='film-card__desc'>
-              <h2 className='film-card__title'>{filmCardTitle}</h2>
+              <h2 className='film-card__title'>{catalogFilms[0].name}</h2>
               <p className='film-card__meta'>
-                <span className='film-card__genre'>{filmCardGenre}</span>
-                <span className='film-card__year'>{filmCardYear}</span>
+                <span className='film-card__genre'>{catalogFilms[0].genre}</span>
+                <span className='film-card__year'>{catalogFilms[0].released}</span>
               </p>
 
               <div className='film-card__buttons'>
@@ -87,7 +86,7 @@ function MoviePage({ filmCardTitle, filmCardGenre, filmCardYear }: MainPageProps
           <h2 className='catalog__title'>More like this</h2>
 
           <div className='catalog__films-list'>
-            <SmallFilmCard />
+            <SmallFilmCard catalogFilms={catalogFilms}/>
           </div>
         </section>
 
