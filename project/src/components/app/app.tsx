@@ -17,6 +17,8 @@ type Props = {
 
 function App({catalogFilms} : Props): JSX.Element {
 
+  const [film] = catalogFilms;
+
   return (
     <BrowserRouter>
       <Routes>
@@ -48,7 +50,7 @@ function App({catalogFilms} : Props): JSX.Element {
         />
         <Route
           path={AppRoute.Player}
-          element={<Player />}
+          element={<Player film={film}/>}
         />
         <Route
           path='*'
