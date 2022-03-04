@@ -1,17 +1,17 @@
+import { PropsWithChildren } from 'react';
 import { FilmType } from '../../types/types';
 
-type Props = {
+type FilmCardProps = {
   catalogFilm: FilmType;
-  onMouseEnterCallback: any;
-  onMouseEnterCallbackOut: any;
-  children: any;
+  onMouseEnterCallback: (film: FilmType) => void;
+  onMouseEnterCallbackOut: () => void;
 };
 
 
-function FilmCard({ catalogFilm, onMouseEnterCallback, onMouseEnterCallbackOut, children }: Props): JSX.Element {
-
+function FilmCard(props: PropsWithChildren<FilmCardProps>): JSX.Element {
+  const { catalogFilm, onMouseEnterCallback, onMouseEnterCallbackOut, children } = props;
   return (
-    <article className='small-film-card catalog__films-card' onMouseEnter={(evt) => onMouseEnterCallback(evt, catalogFilm)} onMouseOut={() => onMouseEnterCallbackOut()}>
+    <article className='small-film-card catalog__films-card' onMouseEnter={() => onMouseEnterCallback(catalogFilm)} onMouseOut={() => onMouseEnterCallbackOut()}>
       <div className='small-film-card__image'>
         {children || <img src={catalogFilm.posterImage} alt={catalogFilm.name} width='280' height='175' />}
       </div>

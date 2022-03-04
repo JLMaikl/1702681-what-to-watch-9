@@ -35,7 +35,7 @@ function PlayerCart({ film, isActive }: Props): JSX.Element {
 
 
   return (
-    <video ref={videoRef} src={film.previewVideoLink} className='player__video' poster={film.posterImage} autoPlay muted preload="none"></video>
+    <video ref={videoRef} src={film.previewVideoLink} width='280' height='175' poster={film.posterImage} muted preload="none" style={{objectFit: 'cover'}}></video>
   );
 }
 
