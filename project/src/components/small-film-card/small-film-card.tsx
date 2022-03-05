@@ -12,7 +12,7 @@ function SmallFilmCard({ catalogFilms }: Props): JSX.Element {
   const [filmCartInfo, setFilmCartInfo] = useState<FilmType | null>(null);
   const isActive = true;
 
-  const filmChangeHandler = (event, filmInfo) => {
+  const filmChangeHandler = (filmInfo: FilmType) => {
     setFilmCartInfo(filmInfo);
   };
 
