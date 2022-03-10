@@ -13,19 +13,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum Genres {
-  AllGenres = 'All genres',
-  Comedies = 'Comedies',
-  Crime = 'Crime',
-  Documentary = 'Documentary',
-  Dramas = 'Dramas',
-  Horror = 'Horror',
-  KidsAndFamily = 'KidsAndFamily',
-  Romance = 'Romance',
-  SciFi = 'SciFi',
-  Thrillers = 'Thrillers',
-}
-
 export const catalogGenresItems = [
   {
     genre: 'All genres',
