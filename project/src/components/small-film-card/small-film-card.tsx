@@ -2,6 +2,7 @@ import { useState } from 'react';
 import FilmCard from '../film-card/film-card';
 import { FilmType } from '../../types/types';
 import PlayerCart from '../player-cart/player-cart';
+import GenreFilmFilter  from '../../utils/genre-film-filter';
 
 type Props = {
   catalogFilms: FilmType[];
@@ -12,7 +13,7 @@ function SmallFilmCard({ catalogFilms }: Props): JSX.Element {
   const [filmCartInfo, setFilmCartInfo] = useState<FilmType | null>(null);
   const isActive = true;
 
-  const filmChangeHandler = (event, filmInfo) => {
+  const filmChangeHandler = (filmInfo: FilmType) => {
     setFilmCartInfo(filmInfo);
   };
 
@@ -20,10 +21,9 @@ function SmallFilmCard({ catalogFilms }: Props): JSX.Element {
     setFilmCartInfo(null);
   };
 
-
   return (
     <>
-      {catalogFilms.map((film) => (
+      {GenreFilmFilter(catalogFilms).map((film: FilmType) => (
         <FilmCard
           key={film.id}
           catalogFilm={film}

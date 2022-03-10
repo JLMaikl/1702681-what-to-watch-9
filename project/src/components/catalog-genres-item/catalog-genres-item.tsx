@@ -1,51 +1,20 @@
 import CatalogGenre from '../catalog-genre/catalog-genre';
+import { catalogGenresItems } from '../../const';
+import { useDispatch } from 'react-redux';
+import { checkGenre } from '../../store/action';
 
 function CatalogGenresItem() {
 
-  const catalogGenresItems = [
-    {
-      genre: 'All genres',
-      active: 'catalog__genres-item--active',
-    },
-    {
-      genre: 'Comedies',
-      active: '',
-    },
-    {
-      genre: 'Crime',
-      active: '',
-    },
-    {
-      genre: 'Documentary',
-      active: '',
-    },
-    {
-      genre: 'Dramas',
-      active: '',
-    },
-    {
-      genre: 'Horror',
-      active: '',
-    },
-    {
-      genre: 'Kids & Family',
-      active: '',
-    },
-    {
-      genre: 'Romance',
-      active: '',
-    },
-    {
-      genre: 'Sci-Fi',
-      active: '',
-    },
-    {
-      genre: 'Thrillers',
-      active: '',
-    }];
+  const dispatch = useDispatch();
+
+  const handleGenreClick = (activeGenre: string) => {
+    dispatch(checkGenre(activeGenre));
+  };
 
   return (
-    <>{catalogGenresItems.map((catalogGenresItem) => <CatalogGenre genre={catalogGenresItem.genre} active={catalogGenresItem.active} key={catalogGenresItem.genre} />)} </>
+    <>{catalogGenresItems.map((catalogGenresItem) =>
+      (<CatalogGenre genre={catalogGenresItem.genre} active={catalogGenresItem.active} key={catalogGenresItem.genre} hendleGenreClick={handleGenreClick} />))}
+    </>
 
   );
 }
