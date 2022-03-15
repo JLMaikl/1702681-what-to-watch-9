@@ -11,7 +11,7 @@ type InitialState = {
   error: string,
 }
 const initialState: InitialState = {
-  activeGenre: '',
+  activeGenre: 'All genres',
   films: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,

@@ -5,11 +5,11 @@ import App from './components/app/app';
 import { catalogFilms } from './mocs/films';
 import ErrorMessage from './components/error-message/errorMessage';
 import { store } from './store';
-import { fetchFilmsAction, checkAuthAction, fetchPromoFilmAction
+import { fetchFilmsAction, fetchPromoFilmAction
 } from './store/api-actions';
 
 store.dispatch(fetchFilmsAction());
-store.dispatch(checkAuthAction());
+// store.dispatch(checkAuthAction());
 store.dispatch(fetchPromoFilmAction());
 
 

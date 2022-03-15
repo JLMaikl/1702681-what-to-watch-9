@@ -10,7 +10,7 @@ import { AuthorizationStatus } from '../const';
 //   }),
 // );
 
-export const checkGenre = createAction<any>('data/active_genre', (activeGenre: string) => ({payload: activeGenre }));
+export const checkGenre = createAction<any>('data/activeGenre');
 
 export const loadFilms = createAction<FilmType[]>('data/loadQuestions');
 
