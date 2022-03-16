@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
+
 function UserBlock() {
   return (
     <ul className='user-block'>
@@ -15,7 +16,7 @@ function UserBlock() {
         </div>
       </li>
       <li className='user-block__item'>
-        <Link to={AppRoute.Login} className='user-block__link'>Sign out</Link>
+        <Link onClick={(evt) => {evt.preventDefault(); }} to={AppRoute.Login} className='user-block__link'>Sign out</Link>
       </li>
     </ul>
   );

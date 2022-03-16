@@ -1,3 +1,4 @@
 export enum ActionType {
-  CheckGenre = 'ACTIVE_GENRE',
+  CheckGenre = 'activeGenre',
 }
+
