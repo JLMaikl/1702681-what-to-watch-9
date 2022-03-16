@@ -11,7 +11,6 @@ type Props = {
 
 function SmallFilmCard({ catalogFilms }: Props): JSX.Element {
   const [filmCartInfo, setFilmCartInfo] = useState<FilmType | null>(null);
-  const isActive = true;
 
   const filmChangeHandler = (filmInfo: FilmType) => {
     setFilmCartInfo(filmInfo);
@@ -30,7 +29,7 @@ function SmallFilmCard({ catalogFilms }: Props): JSX.Element {
           onMouseEnterCallback={filmChangeHandler}
           onMouseEnterCallbackOut={filmChangeHandlerOut}
         >
-          {filmCartInfo?.id === film.id ? <PlayerCart film={film} isActive={isActive} /> : null}
+          {filmCartInfo?.id === film.id && <PlayerCart film={film} isActive /> }
         </FilmCard>))}
     </>
   );

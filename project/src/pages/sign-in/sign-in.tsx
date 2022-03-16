@@ -26,6 +26,7 @@ function SignIn(): JSX.Element {
         login: loginRef.current.value,
         password: passwordRef.current.value,
       });
+      navigate(AppRoute.Main);
     }
   };
 
@@ -51,7 +52,7 @@ function SignIn(): JSX.Element {
             </div>
           </div>
           <div className='sign-in__submit'>
-            <button onClick={() => navigate(AppRoute.Main)} className='sign-in__btn' type='submit'>Sign in</button>
+            <button  className='sign-in__btn' type='submit'>Sign in</button>
           </div>
         </form>
       </div>

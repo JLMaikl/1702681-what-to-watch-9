@@ -2,14 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
-import { catalogFilms } from './mocs/films';
 import ErrorMessage from './components/error-message/errorMessage';
 import { store } from './store';
-import { fetchFilmsAction, fetchPromoFilmAction
-} from './store/api-actions';
+import { fetchFilmsAction, fetchPromoFilmAction, checkAuthAction} from './store/api-actions';
 
 store.dispatch(fetchFilmsAction());
-// store.dispatch(checkAuthAction());
+store.dispatch(checkAuthAction());
 store.dispatch(fetchPromoFilmAction());
 
 
@@ -17,7 +15,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ErrorMessage />
-      <App catalogFilms={catalogFilms} />
+      <App/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));

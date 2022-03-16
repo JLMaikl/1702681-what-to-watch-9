@@ -5,6 +5,7 @@ import CatalogGenresItem from '../../components/catalog-genres-item/catalog-genr
 import Footer from '../../components/footer/footer';
 import { FilmType } from '../../types/types';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 };
 
 function MainPage({ catalogFilms }: Props): JSX.Element {
+  const { promoFilm } = useAppSelector((state) => state);
   const navigate = useNavigate();
 
   return (
@@ -40,14 +42,14 @@ function MainPage({ catalogFilms }: Props): JSX.Element {
             </div>
 
             <div className='film-card__desc'>
-              <h2 className='film-card__title'>{catalogFilms[0].name}</h2>
+              <h2 className='film-card__title'>{promoFilm.name}</h2>
               <p className='film-card__meta'>
-                <span className='film-card__genre'>{catalogFilms[0].genre}</span>
-                <span className='film-card__year'>{catalogFilms[0].released}</span>
+                <span className='film-card__genre'>{promoFilm.genre}</span>
+                <span className='film-card__year'>{promoFilm.released}</span>
               </p>
 
               <div className='film-card__buttons'>
-                <button onClick={() => navigate(`/player/${catalogFilms[0].id}`)} className='btn btn--play film-card__button' type='button'>
+                <button onClick={() => navigate(`/player/${promoFilm.id}`)} className='btn btn--play film-card__button' type='button'>
                   <svg viewBox='0 0 19 19' width='19' height='19'>
                     <use xlinkHref='#play-s'></use>
                   </svg>
