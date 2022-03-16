@@ -1,8 +1,20 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+// import { Link } from 'react-router-dom';
+import { APIRoute } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { logoutAction } from '../../store/api-actions';
+import { useNavigate } from 'react-router-dom';
 
 
 function UserBlock() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+
+  const handleUserLogOutClick = () => {
+    dispatch(logoutAction());
+    navigate(APIRoute.Login);
+  };
+
   return (
     <ul className='user-block'>
       <li className='user-block__item'>
@@ -16,9 +28,10 @@ function UserBlock() {
         </div>
       </li>
       <li className='user-block__item'>
-        <Link onClick={(evt) => {evt.preventDefault(); }} to={AppRoute.Login} className='user-block__link'>Sign out</Link>
+        {/* <Link to={AppRoute.Login} onClick={(evt) => { evt.preventDefault(); dispatch(logoutAction());}} className='user-block__link'>Sign out</Link> */}
+        <span className="user-block__link" onClick={handleUserLogOutClick}>Sign out</span>
       </li>
-    </ul>
+    </ul >
   );
 }
 

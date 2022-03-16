@@ -40,7 +40,7 @@ export const catalogGenresItems = [
     active: 'catalog__genres-item--active',
   },
   {
-    genre: 'Comedies',
+    genre: 'Comedy',
     active: '',
   },
   {
@@ -48,33 +48,43 @@ export const catalogGenresItems = [
     active: '',
   },
   {
-    genre: 'Documentary',
+    genre: 'Adventure',
     active: '',
   },
   {
-    genre: 'Dramas',
+    genre: 'Action',
     active: '',
   },
   {
-    genre: 'Horror',
+    genre: 'Thriller',
     active: '',
   },
   {
-    genre: 'Kids & Family',
+    genre: 'Drama',
     active: '',
   },
   {
-    genre: 'Romance',
-    active: '',
-  },
-  {
-    genre: 'Sci-Fi',
-    active: '',
-  },
-  {
-    genre: 'Thrillers',
+    genre: 'Fantasy',
     active: '',
   }];
 
-
+export const PROMO_FILM = {
+  name: 'War of the Worlds',
+  posterImage: 'https://9.react.pages.academy/static/film/poster/War_of_the_Worlds.jpg',
+  previewImage: 'https://9.react.pages.academy/static/film/preview/war-of-the-worlds.jpg',
+  backgroundImage: 'https://9.react.pages.academy/static/film/background/War_of_the_Worlds.jpg',
+  backgroundColo: '#9B7E61',
+  description: 'As Earth is invaded by alien tripod fighting machines, one family fights for survival.',
+  rating: 9.3,
+  scoresCount: 386834,
+  director: 'Steven Spielberg',
+  starring: ['Tom Cruise','Dakota Fanning','Tim Robbins'],
+  runTime: 116,
+  genre: 'Adventure',
+  released: 2005,
+  id: 1,
+  isFavorite: false,
+  videoLink: 'https://9.react.pages.academy/static/film/video/matrix.mp4',
+  previewVideoLink: 'https://9.react.pages.academy/static/film/video/dog.mp4',
+};
 
