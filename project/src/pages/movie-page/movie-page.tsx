@@ -1,10 +1,9 @@
-/* eslint-disable react/no-unescaped-entities */
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
-import MoviePageOverview from '../../components/movie-page-overview/movie-page-overview';
 import Footer from '../../components/footer/footer';
 import { FilmType } from '../../types/types';
+import FilmCard from './film-card/film-card';
 
 type Props = {
   catalogFilms: FilmType[];
@@ -60,7 +59,7 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
             </div>
 
             <div className='film-card__desc'>
-              <nav className='film-nav film-card__nav'>
+              {/* <nav className='film-nav film-card__nav'>
                 <ul className='film-nav__list'>
                   <li className='film-nav__item film-nav__item--active'>
                     <a href='#' className='film-nav__link'>Overview</a>
@@ -74,7 +73,9 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
                 </ul>
               </nav>
 
-              <MoviePageOverview />
+              <MoviePageOverview /> */}
+
+              <FilmCard />
 
             </div>
           </div>

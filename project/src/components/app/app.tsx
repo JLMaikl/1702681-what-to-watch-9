@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks';
 import MainPage from '../../pages/main-page/main-page';
 import AddReview from '../../pages/add-review/add-review';
 import MyList from '../../pages/my-list/my-list';
@@ -10,7 +11,7 @@ import SignIn from '../../pages/sign-in/sign-in';
 import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { useAppSelector } from '../../hooks';
+import MoviePageReviews from '../movie-page-reviews/movie-page-reviews';
 
 
 function App(): JSX.Element {

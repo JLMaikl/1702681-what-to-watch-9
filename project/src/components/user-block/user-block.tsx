@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';

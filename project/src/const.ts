@@ -4,7 +4,8 @@ export enum AppRoute {
   MyList = '/mylist',
   Films = '/films/:id',
   Filmsreview = '/films/:id/review',
-  Player = '/player/:id'
+  Player = '/player/:id',
+  MoviePageReviews = '/films/:id/rewies',
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;
@@ -32,6 +33,18 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
 }
+
+export const filmNavLink = [
+  {
+    link: 'Overview',
+  },
+  {
+    link: 'Details',
+  },
+  {
+    link: 'Reviews',
+  },
+];
 
 
 export const catalogGenresItems = [
