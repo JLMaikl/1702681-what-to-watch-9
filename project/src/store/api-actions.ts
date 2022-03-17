@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { FilmType } from '../types/types';
-import { loadFilms, requireAuthorization, setError } from './action';
+import { loadFilms, requireAuthorization, setError, loadPromoFilm } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { AuthorizationStatus, APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -47,8 +47,8 @@ export const fetchPromoFilmAction = createAsyncThunk(
   'data/fetchPromoFilm',
   async () => {
     try {
-      const { data } = await api.get<FilmType[]>(APIRoute.PromoFilm);
-      store.dispatch(loadFilms(data));
+      const { data } = await api.get<FilmType>(APIRoute.PromoFilm);
+      store.dispatch(loadPromoFilm(data));
     } catch (error) {
       errorHandle(error);
     }
