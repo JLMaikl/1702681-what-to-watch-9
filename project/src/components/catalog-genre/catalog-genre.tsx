@@ -12,7 +12,7 @@ function CatalogGenre({ genre, active, hendleGenreClick }: CatalogGenresItemsPro
       className={`catalog__genres-item ${active}`}
       onClick={() => hendleGenreClick(genre)}
     >
-      <a href='#' className='catalog__genres-link'>
+      <a href='javascript://' className='catalog__genres-link'>
         {genre}
       </a>
     </li>
