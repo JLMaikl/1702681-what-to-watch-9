@@ -36,13 +36,19 @@ export enum APIRoute {
 
 export const filmNavLink = [
   {
+    id: 1,
     link: 'Overview',
+    active: 'film-nav__item--active',
   },
   {
+    id: 2,
     link: 'Details',
+    active: '',
   },
   {
+    id: 3,
     link: 'Reviews',
+    active: '',
   },
 ];
 

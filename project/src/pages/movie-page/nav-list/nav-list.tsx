@@ -1,11 +1,14 @@
 type NavListProps = {
   filmLink: string,
+  active: string,
+  handleActiveItemClick: (activeItem: string) => void,
 }
 
-function NavList({filmLink}: NavListProps): JSX.Element {
+function NavList({filmLink, active, handleActiveItemClick}: NavListProps): JSX.Element {
+
   return (
-    <li className='film-nav__item film-nav__item--active'>
-      <a href='#' className='film-nav__link'>{filmLink}</a>
+    <li onClick={() => handleActiveItemClick(filmLink)} className={`film-nav__item ${active}`}>
+      <a href='javascript://' className='film-nav__link'>{filmLink}</a>
     </li>
   );
 }

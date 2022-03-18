@@ -1,15 +1,20 @@
+/* eslint-disable no-console */
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
 import { FilmType } from '../../types/types';
-import FilmCard from './film-card/film-card';
+import FilmCardInfo from './film-card-info/film-card-info';
+import FilmNavList from './film-nav-list/film-nav-list';
+
 
 type Props = {
   catalogFilms: FilmType[];
 };
 
 function MoviePage({catalogFilms}: Props): JSX.Element {
+
+
   return (
     <>
       <section className='film-card film-card--full'>
@@ -59,23 +64,11 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
             </div>
 
             <div className='film-card__desc'>
-              {/* <nav className='film-nav film-card__nav'>
-                <ul className='film-nav__list'>
-                  <li className='film-nav__item film-nav__item--active'>
-                    <a href='#' className='film-nav__link'>Overview</a>
-                  </li>
-                  <li className='film-nav__item'>
-                    <a href='#' className='film-nav__link'>Details</a>
-                  </li>
-                  <li className='film-nav__item'>
-                    <a href='#' className='film-nav__link'>Reviews</a>
-                  </li>
-                </ul>
+              <nav className='film-nav film-card__nav'>
+                <FilmNavList />
               </nav>
 
-              <MoviePageOverview /> */}
-
-              <FilmCard />
+              <FilmCardInfo />
 
             </div>
           </div>
