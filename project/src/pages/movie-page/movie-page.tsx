@@ -6,6 +6,7 @@ import Footer from '../../components/footer/footer';
 import { FilmType } from '../../types/types';
 import FilmCardInfo from './film-card-info/film-card-info';
 import FilmNavList from './film-nav-list/film-nav-list';
+import { useAppSelector } from '../../hooks';
 
 
 type Props = {
@@ -13,14 +14,14 @@ type Props = {
 };
 
 function MoviePage({catalogFilms}: Props): JSX.Element {
-
+  const { film } = useAppSelector((state) => state);
 
   return (
     <>
       <section className='film-card film-card--full'>
         <div className='film-card__hero'>
           <div className='film-card__bg'>
-            <img src='img/bg-the-grand-budapest-hotel.jpg' alt='The Grand Budapest Hotel' />
+            <img src={film.backgroundImage} alt={film.description} />
           </div>
 
           <h1 className='visually-hidden'>WTW</h1>
@@ -32,10 +33,10 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
 
           <div className='film-card__wrap'>
             <div className='film-card__desc'>
-              <h2 className='film-card__title'>{catalogFilms[0].name}</h2>
+              <h2 className='film-card__title'>{film.name}</h2>
               <p className='film-card__meta'>
-                <span className='film-card__genre'>{catalogFilms[0].genre}</span>
-                <span className='film-card__year'>{catalogFilms[0].released}</span>
+                <span className='film-card__genre'>{film.genre}</span>
+                <span className='film-card__year'>{film.released}</span>
               </p>
 
               <div className='film-card__buttons'>
@@ -60,7 +61,7 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
         <div className='film-card__wrap film-card__translate-top'>
           <div className='film-card__info'>
             <div className='film-card__poster film-card__poster--big'>
-              <img src='img/the-grand-budapest-hotel-poster.jpg' alt='The Grand Budapest Hotel poster' width='218' height='327' />
+              <img src={film.posterImage} alt={film.description} width='218' height='327' />
             </div>
 
             <div className='film-card__desc'>
@@ -68,7 +69,7 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
                 <FilmNavList />
               </nav>
 
-              <FilmCardInfo />
+              <FilmCardInfo film={film}/>
 
             </div>
           </div>

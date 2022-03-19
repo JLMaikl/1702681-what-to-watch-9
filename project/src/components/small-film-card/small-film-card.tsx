@@ -20,6 +20,7 @@ function SmallFilmCard({ catalogFilms }: Props): JSX.Element {
     setFilmCartInfo(null);
   };
 
+
   return (
     <>
       {GenreFilmFilter(catalogFilms).map((film: FilmType) => (

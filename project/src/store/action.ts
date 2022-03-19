@@ -14,3 +14,5 @@ export const setError = createAction<string>('game/setError');
 export const loadPromoFilm = createAction<FilmType>('data/promoFilm');
 
 export const checkActiveItem = createAction<string>('data/activeItem');
+
+export const checkFilm = createAction<FilmType>('data/activeFilm');

@@ -11,7 +11,6 @@ import SignIn from '../../pages/sign-in/sign-in';
 import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
-import MoviePageReviews from '../movie-page-reviews/movie-page-reviews';
 
 
 function App(): JSX.Element {
