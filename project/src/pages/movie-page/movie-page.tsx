@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
@@ -7,13 +6,15 @@ import { FilmType } from '../../types/types';
 import FilmCardInfo from './film-card-info/film-card-info';
 import FilmNavList from './film-nav-list/film-nav-list';
 import { useAppSelector } from '../../hooks';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 
 type Props = {
   catalogFilms: FilmType[];
 };
 
-function MoviePage({catalogFilms}: Props): JSX.Element {
+function MoviePage({ catalogFilms }: Props): JSX.Element {
   const { film } = useAppSelector((state) => state);
 
   return (
@@ -39,21 +40,23 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
                 <span className='film-card__year'>{film.released}</span>
               </p>
 
-              <div className='film-card__buttons'>
-                <button className='btn btn--play film-card__button' type='button'>
-                  <svg viewBox='0 0 19 19' width='19' height='19'>
-                    <use xlinkHref='#play-s'></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className='btn btn--list film-card__button' type='button'>
-                  <svg viewBox='0 0 19 20' width='19' height='20'>
-                    <use xlinkHref='#add'></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href='add-review.html' className='btn film-card__button'>Add review</a>
-              </div>
+              <Link to={`${AppRoute.Player}${film.id}`} style={{ textDecoration: 'none' }}>
+                <div className='film-card__buttons'>
+                  <button className='btn btn--play film-card__button' type='button'>
+                    <svg viewBox='0 0 19 19' width='19' height='19'>
+                      <use xlinkHref='#play-s'></use>
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                  <button className='btn btn--list film-card__button' type='button'>
+                    <svg viewBox='0 0 19 20' width='19' height='20'>
+                      <use xlinkHref='#add'></use>
+                    </svg>
+                    <span>My list</span>
+                  </button>
+                  <a href='add-review.html' className='btn film-card__button'>Add review</a>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -69,7 +72,7 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
                 <FilmNavList />
               </nav>
 
-              <FilmCardInfo film={film}/>
+              <FilmCardInfo film={film} />
 
             </div>
           </div>
@@ -81,7 +84,7 @@ function MoviePage({catalogFilms}: Props): JSX.Element {
           <h2 className='catalog__title'>More like this</h2>
 
           <div className='catalog__films-list'>
-            <SmallFilmCard catalogFilms={catalogFilms}/>
+            <SmallFilmCard catalogFilms={catalogFilms} />
           </div>
         </section>
 

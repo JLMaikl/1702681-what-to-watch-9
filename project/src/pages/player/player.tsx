@@ -1,14 +1,13 @@
-import { FilmType } from '../../types/types';
-
-type Props = {
-  film: FilmType;
-};
+/* eslint-disable no-console */
+import { useAppSelector } from '../../hooks';
 
 
-function Player({film}: Props): JSX.Element {
+function Player(): JSX.Element {
+  const {film} = useAppSelector((state) => state);
+
   return (
     <div className='player'>
-      <video src={film.previewVideoLink} className='player__video' poster={film.posterImage}></video>
+      <video src={film.videoLink} className='player__video' poster={film.backgroundImage} ></video>
 
       <button type='button' className='player__exit'>Exit</button>
 
@@ -22,7 +21,7 @@ function Player({film}: Props): JSX.Element {
         </div>
 
         <div className='player__controls-row'>
-          <button type='button' className='player__play'>
+          <button type='button' className='player__play' >
             <svg viewBox='0 0 19 19' width='19' height='19'>
               <use xlinkHref='#play-s'></use>
             </svg>
