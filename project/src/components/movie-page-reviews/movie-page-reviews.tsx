@@ -1,14 +1,17 @@
-import { FilmType } from '../../types/types';
+/* eslint-disable no-console */
+import { Review } from '../../types/review';
+import ReviewItem from './review-item/review-item';
 
-type MoviePageReviewsProps = {
-  film: FilmType;
+type ReviewsProps = {
+  reviews: Review[];
 };
 
-function MoviePageReviews({film}: MoviePageReviewsProps): JSX.Element {
+function MoviePageReviews({reviews}: ReviewsProps): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        <div className="review">
+        {reviews.map((review) => (<ReviewItem review={review} key={review.id}/>))}
+        {/* <div className="review">
           <blockquote className="review__quote">
             <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director`&apos;`s funniest and most exquisitely designed films in years.</p>
             <footer className="review__details">
@@ -69,7 +72,7 @@ function MoviePageReviews({film}: MoviePageReviewsProps): JSX.Element {
             </footer>
           </blockquote>
           <div className="review__rating">7,0</div>
-        </div>
+        </div> */}
       </div>
     </div>
 

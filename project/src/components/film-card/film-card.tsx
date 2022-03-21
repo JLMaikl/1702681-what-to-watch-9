@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { checkFilm } from '../../store/action';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { store } from '../../store';
+import { fetchFilmsAction } from '../../store/api-actions';
 
 
 type FilmCardProps = {
@@ -22,6 +24,8 @@ function FilmCard(props: PropsWithChildren<FilmCardProps>): JSX.Element {
 
 
   const { catalogFilm, onMouseEnterCallback, onMouseEnterCallbackOut, children } = props;
+  // store.dispatch(fetchFilmsAction(catalogFilm.id));
+
   return (
 
     <article className='small-film-card catalog__films-card' onMouseEnter={() => onMouseEnterCallback(catalogFilm)} onMouseOut={() => onMouseEnterCallbackOut()} onClick={() => onClickActiveFilm(catalogFilm)} >

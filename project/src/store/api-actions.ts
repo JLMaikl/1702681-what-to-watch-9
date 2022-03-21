@@ -1,12 +1,14 @@
+/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { FilmType } from '../types/types';
-import { loadFilms, requireAuthorization, setError, loadPromoFilm } from './action';
+import { loadFilms, requireAuthorization, setError, loadPromoFilm, loadReviews } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { AuthorizationStatus, APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handle';
+import { Review } from '../types/review';
 
 export const clearErrorAction = createAsyncThunk(
   'game/clearError',
@@ -17,7 +19,6 @@ export const clearErrorAction = createAsyncThunk(
     );
   },
 );
-
 
 export const fetchSimilarFilmAction = createAsyncThunk(
   'data/fetchSimilarFilm',
@@ -59,7 +60,7 @@ export const fetchFilmsAction = createAsyncThunk(
   'data/fetchFilms',
   async () => {
     try {
-      const { data } = await api.get<FilmType[]>(APIRoute.Films);
+      const { data } = await api.get<FilmType[]>(`${APIRoute.Films}`);
       store.dispatch(loadFilms(data));
     } catch (error) {
       errorHandle(error);
@@ -67,12 +68,12 @@ export const fetchFilmsAction = createAsyncThunk(
   },
 );
 
-export const fetchCommentsAction = createAsyncThunk(
+export const fetchRewievAction = createAsyncThunk(
   'data/fetchComments',
-  async () => {
+  async (filmId: number) => {
     try {
-      const { data } = await api.get<FilmType[]>(APIRoute.Comments);
-      store.dispatch(loadFilms(data));
+      const { data } = await api.get<Review[]>(`${APIRoute.Comments}${filmId}`);
+      store.dispatch(loadReviews(data));
     } catch (error) {
       errorHandle(error);
     }

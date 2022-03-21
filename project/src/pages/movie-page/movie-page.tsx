@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
@@ -15,7 +16,7 @@ type Props = {
 };
 
 function MoviePage({ catalogFilms }: Props): JSX.Element {
-  const { film } = useAppSelector((state) => state);
+  const { film, review } = useAppSelector((state) => state);
 
   return (
     <>
@@ -72,7 +73,7 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
                 <FilmNavList />
               </nav>
 
-              <FilmCardInfo film={film} />
+              <FilmCardInfo film={film} review={review}/>
 
             </div>
           </div>

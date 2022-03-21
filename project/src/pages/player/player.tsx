@@ -1,5 +1,6 @@
-/* eslint-disable no-console */
 import { useAppSelector } from '../../hooks';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 
 function Player(): JSX.Element {
@@ -7,17 +8,19 @@ function Player(): JSX.Element {
 
   return (
     <div className='player'>
-      <video src={film.videoLink} className='player__video' poster={film.backgroundImage} ></video>
+      <video src={film.videoLink} className='player__video' poster={film.backgroundImage} controls></video>
 
-      <button type='button' className='player__exit'>Exit</button>
+      <Link to={AppRoute.Films}>
+        <button type='button' className='player__exit'>Exit</button>
+      </Link>
 
-      <div className='player__controls'>
+      {/* <div className='player__controls'>
         <div className='player__controls-row'>
           <div className='player__time'>
             <progress className='player__progress' value='30' max='100'></progress>
             <div className='player__toggler' style={{left: '30%'}}>Toggler</div>
           </div>
-          <div className='player__time-value'>1:30:29</div>
+          <div className='player__time-value'>{`${Math.floor(film.runTime/60)}: ${film.runTime - Math.floor(film.runTime/60) * 60}` }</div>
         </div>
 
         <div className='player__controls-row'>
@@ -36,7 +39,7 @@ function Player(): JSX.Element {
             <span>Full screen</span>
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
