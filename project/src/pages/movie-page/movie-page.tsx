@@ -7,8 +7,11 @@ import { FilmType } from '../../types/types';
 import FilmCardInfo from './film-card-info/film-card-info';
 import FilmNavList from './film-nav-list/film-nav-list';
 import { useAppSelector } from '../../hooks';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { AppRoute } from '../../const';
+import { store } from '../../store';
+import { fetchRewievAction } from '../../store/api-actions';
 
 
 type Props = {
@@ -16,8 +19,16 @@ type Props = {
 };
 
 function MoviePage({ catalogFilms }: Props): JSX.Element {
-  const { film, review } = useAppSelector((state) => state);
+  const { id } = useParams();
 
+  useEffect(() => {
+    if(id !== undefined) {
+      store.dispatch(fetchRewievAction(+id));
+    }
+  }, [id]);
+
+  const { film, review } = useAppSelector((state) => state);
+  console.log(review)
   return (
     <>
       <section className='film-card film-card--full'>
@@ -41,7 +52,7 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
                 <span className='film-card__year'>{film.released}</span>
               </p>
 
-              <Link to={`${AppRoute.Player}${film.id}`} style={{ textDecoration: 'none' }}>
+              <Link to={`${AppRoute.PlayerId}${film.id}`} style={{ textDecoration: 'none' }}>
                 <div className='film-card__buttons'>
                   <button className='btn btn--play film-card__button' type='button'>
                     <svg viewBox='0 0 19 19' width='19' height='19'>

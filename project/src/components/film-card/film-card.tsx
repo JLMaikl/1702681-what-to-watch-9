@@ -24,12 +24,11 @@ function FilmCard(props: PropsWithChildren<FilmCardProps>): JSX.Element {
 
 
   const { catalogFilm, onMouseEnterCallback, onMouseEnterCallbackOut, children } = props;
-  // store.dispatch(fetchFilmsAction(catalogFilm.id));
 
   return (
 
     <article className='small-film-card catalog__films-card' onMouseEnter={() => onMouseEnterCallback(catalogFilm)} onMouseOut={() => onMouseEnterCallbackOut()} onClick={() => onClickActiveFilm(catalogFilm)} >
-      <Link to={`${AppRoute.Films}${catalogFilm.id}`}>
+      <Link to={`${AppRoute.Film}${catalogFilm.id}`}>
         <div>
           <div className='small-film-card__image'>
             {children || <img src={catalogFilm.posterImage} alt={catalogFilm.name} width='280' height='175' />}
