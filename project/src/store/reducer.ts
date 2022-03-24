@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { checkGenre, loadFilms, requireAuthorization, setError, loadPromoFilm, checkActiveItem, loadReviews, checkFilm } from './action';
+import { checkGenre, loadFilms, requireAuthorization, setError, loadPromoFilm, checkActiveItem, loadReviews, checkFilm, addReviewAction, addRatingAction } from './action';
 import { AuthorizationStatus, PROMO_FILM } from '../const';
 import { FilmType } from '../types/types';
 import { Review } from '../types/review';
@@ -10,6 +10,8 @@ type InitialState = {
   film: FilmType,
   promoFilm: FilmType,
   review: Review[],
+  addRating: number,
+  addReview: string,
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
   error: string,
@@ -21,6 +23,8 @@ const initialState: InitialState = {
   film: PROMO_FILM,
   promoFilm: PROMO_FILM,
   review: [],
+  addRating: 0,
+  addReview: '',
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
   error: '',
@@ -42,6 +46,14 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, action) => {
       state.review = action.payload;
+      state.isDataLoaded = true;
+    })
+    .addCase(addReviewAction, (state, action) => {
+      state.addReview = action.payload;
+      state.isDataLoaded = true;
+    })
+    .addCase(addRatingAction, (state, action) => {
+      state.addRating = action.payload;
       state.isDataLoaded = true;
     })
     .addCase(requireAuthorization, (state, action) => {

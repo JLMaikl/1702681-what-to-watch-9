@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { AppRoute } from '../../const';
 import { store } from '../../store';
 import { fetchRewievAction } from '../../store/api-actions';
+import { AuthorizationStatus } from '../../const';
 
 
 type Props = {
@@ -22,13 +23,13 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
   const { id } = useParams();
 
   useEffect(() => {
-    if(id !== undefined) {
+    if (id !== undefined) {
       store.dispatch(fetchRewievAction(+id));
     }
   }, [id]);
 
-  const { film, review } = useAppSelector((state) => state);
-  console.log(review)
+  const { film, review, authorizationStatus } = useAppSelector((state) => state);
+
   return (
     <>
       <section className='film-card film-card--full'>
@@ -52,23 +53,26 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
                 <span className='film-card__year'>{film.released}</span>
               </p>
 
-              <Link to={`${AppRoute.PlayerId}${film.id}`} style={{ textDecoration: 'none' }}>
-                <div className='film-card__buttons'>
-                  <button className='btn btn--play film-card__button' type='button'>
+              <div className='film-card__buttons'>
+                <button className='btn btn--play film-card__button' type='button'>
+                  <Link to={`${AppRoute.PlayerId}${film.id}`} style={{ textDecoration: 'none', color: '#EEE5B5' }}>
                     <svg viewBox='0 0 19 19' width='19' height='19'>
                       <use xlinkHref='#play-s'></use>
                     </svg>
                     <span>Play</span>
-                  </button>
-                  <button className='btn btn--list film-card__button' type='button'>
-                    <svg viewBox='0 0 19 20' width='19' height='20'>
-                      <use xlinkHref='#add'></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                  <a href='add-review.html' className='btn film-card__button'>Add review</a>
-                </div>
-              </Link>
+                  </Link>
+                </button>
+                <button className='btn btn--list film-card__button' type='button'>
+                  <svg viewBox='0 0 19 20' width='19' height='20'>
+                    <use xlinkHref='#add'></use>
+                  </svg>
+                  <span>My list</span>
+                </button>
+                {authorizationStatus === AuthorizationStatus.Auth ?
+                  <Link to={`${AppRoute.Film}${film.id}/review`} className='btn film-card__button'>Add review</Link>
+                  : null}
+              </div>
+
             </div>
           </div>
         </div>
@@ -84,7 +88,7 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
                 <FilmNavList />
               </nav>
 
-              <FilmCardInfo film={film} review={review}/>
+              <FilmCardInfo film={film} review={review} />
 
             </div>
           </div>

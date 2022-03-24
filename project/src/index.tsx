@@ -10,7 +10,6 @@ import { fetchFilmsAction, fetchPromoFilmAction, checkAuthAction } from './store
 store.dispatch(fetchFilmsAction());
 store.dispatch(checkAuthAction());
 store.dispatch(fetchPromoFilmAction());
-// store.dispatch(fetchRewievAction(store.getState().film.id));
 
 
 ReactDOM.render(

@@ -10,6 +10,10 @@ export const loadFilms = createAction<FilmType[]>('data/loadFilms');
 
 export const loadReviews = createAction<Review[]>('data/loadReview');
 
+export const addReviewAction = createAction<string>('data/addReview');
+
+export const addRatingAction = createAction<number>('data/addRating');
+
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 export const setError = createAction<string>('game/setError');

@@ -2,13 +2,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { FilmType } from '../types/types';
-import { loadFilms, requireAuthorization, setError, loadPromoFilm, loadReviews } from './action';
+import { Review } from '../types/review';
+import { loadFilms, requireAuthorization, setError, loadPromoFilm, loadReviews, addReviewAction, addRatingAction } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { AuthorizationStatus, APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
+import { SendReview } from '../types/send-review';
 import { errorHandle } from '../services/error-handle';
-import { Review } from '../types/review';
+
 
 export const clearErrorAction = createAsyncThunk(
   'game/clearError',
@@ -114,6 +116,19 @@ export const logoutAction = createAsyncThunk(
       await api.delete(APIRoute.Logout);
       dropToken();
       store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const addNewReviewAction = createAsyncThunk(
+  'data/sendNewReview',
+  async ({id, addRating, addReview}: SendReview) => {
+    try {
+      await api.post<SendReview>(`${APIRoute.Comments}${id}`, {addReview,  addRating});
+      store.dispatch(addReviewAction(''));
+      store.dispatch(addRatingAction(0));
     } catch (error) {
       errorHandle(error);
     }
