@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import AddReviewForm from './add-review-form';
+import AddReviewForm from './add-review-form/add-review-form';
 
 
 function AddReview(): JSX.Element {

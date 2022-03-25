@@ -124,9 +124,9 @@ export const logoutAction = createAsyncThunk(
 
 export const addNewReviewAction = createAsyncThunk(
   'data/sendNewReview',
-  async ({id, addRating, addReview}: SendReview) => {
+  async (id: number, { rating, comment }: SendReview) => {
     try {
-      await api.post<SendReview>(`${APIRoute.Comments}${id}`, {addReview,  addRating});
+      await api.post<SendReview>(`${APIRoute.Comments}${id}`, { rating, comment });
       store.dispatch(addReviewAction(''));
       store.dispatch(addRatingAction(0));
     } catch (error) {

@@ -1,34 +1,32 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { useState, createRef, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
-import { RATING_VALUE } from '../../const';
+import { useAppSelector } from '../../../hooks';
+import { RATING_VALUE } from '../../../const';
 import { useDispatch } from 'react-redux';
-import { addRatingAction, addReviewAction } from '../../store/action';
-import { addNewReviewAction } from '../../store/api-actions';
+import { addRatingAction, addReviewAction } from '../../../store/action';
+import { addNewReviewAction } from '../../../store/api-actions';
 
 function AddReviewForm(): JSX.Element {
-  const newReviewElement: React.RefObject<HTMLInputElement>  = createRef();
+  const [ ratingState, setRatingState] = useState(0);
+  const [ reviewState, setReviewState] = useState('');
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const { addRating, addReview} = useAppSelector((state) => state);
-
-  let reviewText = null;
+  const { id } = useParams<{id: string}>();
 
   const setRatingInput = (ratingInput: number) => {
-    dispatch(addRatingAction(ratingInput));
+    setRatingState(ratingInput);
+    dispatch(addRatingAction(ratingState));
+  };
+
+  const handleTextInput = ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
+    setReviewState(target.value);
   };
 
   const addUserReview = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     evt.preventDefault();
+    addNewReviewAction(Number(id), {rating: ratingState, comment: reviewState });
 
-    if (newReviewElement.current !== null) {
-      reviewText = newReviewElement.current.value;
-      dispatch(addReviewAction(reviewText));
-    }
-
-    addNewReviewAction(id, addRating, addReview);
   };
 
   return (
@@ -50,10 +48,10 @@ function AddReviewForm(): JSX.Element {
         </div>
 
         <div className='add-review__text'>
-          <textarea ref={newReviewElement} className='add-review__textarea' name='review-text' id='review-text' placeholder='Review text' >
+          <textarea className='add-review__textarea' name='review-text' id='review-text' placeholder='Review text' onChange={handleTextInput}>
           </textarea>
           <div className='add-review__submit'>
-            <button className='add-review__btn' type='submit' onClick={addUserReview} disabled = {reviewText.length < 50 || reviewText.length > 400}>Post</button>
+            <button className='add-review__btn' type='submit' onClick={addUserReview} disabled={reviewText.length < 50 || reviewText.length > 400}>Post</button>
           </div>
         </div>
       </form>
