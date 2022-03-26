@@ -4,7 +4,7 @@ import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import CatalogGenresItem from '../../components/catalog-genres-item/catalog-genres-item';
 import Footer from '../../components/footer/footer';
 import { FilmType } from '../../types/types';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 
 
@@ -13,7 +13,7 @@ type Props = {
 };
 
 function MainPage({ catalogFilms }: Props): JSX.Element {
-  const { promoFilm } = useAppSelector((state) => state);
+  const { promoFilm, authorizationStatus } = useAppSelector((state) => state);
   const navigate = useNavigate();
 
   return (
@@ -56,7 +56,7 @@ function MainPage({ catalogFilms }: Props): JSX.Element {
                   <span>Play</span>
                 </button>
 
-                <button onClick={() => navigate(AppRoute.MyList)} className='btn btn--list film-card__button' type='button'>
+                <button onClick={() => {authorizationStatus === AuthorizationStatus.Auth ? navigate(AppRoute.MyList) : navigate(AppRoute.Login) ;}} className='btn btn--list film-card__button' type='button'>
                   <svg viewBox='0 0 19 20' width='19' height='20'>
                     <use xlinkHref='#add'></use>
                   </svg>

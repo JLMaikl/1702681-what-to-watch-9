@@ -2,10 +2,9 @@
 import React from 'react';
 import { useState, ChangeEvent } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../hooks';
 import { RATING_VALUE } from '../../../const';
 import { useDispatch } from 'react-redux';
-import { addRatingAction, addReviewAction } from '../../../store/action';
+import { addRatingAction } from '../../../store/action';
 import { addNewReviewAction } from '../../../store/api-actions';
 
 function AddReviewForm(): JSX.Element {
@@ -23,15 +22,15 @@ function AddReviewForm(): JSX.Element {
     setReviewState(target.value);
   };
 
-  const addUserReview = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+  const addUserReview = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    addNewReviewAction(Number(id), {rating: ratingState, comment: reviewState });
-
+    console.log(12342)
+    addNewReviewAction({id: Number(id), rating: ratingState, comment: reviewState});
   };
 
   return (
     <div className="add-review">
-      <form action='#' className='add-review__form'>
+      <form action='#' className='add-review__form' onSubmit={(evt) => {evt.preventDefault(); addUserReview(evt);}}>
         <div className='rating'>
           <div className='rating__stars'>
 
@@ -51,7 +50,7 @@ function AddReviewForm(): JSX.Element {
           <textarea className='add-review__textarea' name='review-text' id='review-text' placeholder='Review text' onChange={handleTextInput}>
           </textarea>
           <div className='add-review__submit'>
-            <button className='add-review__btn' type='submit' onClick={addUserReview} disabled={reviewText.length < 50 || reviewText.length > 400}>Post</button>
+            <button className='add-review__btn' type='submit' >Post</button>
           </div>
         </div>
       </form>

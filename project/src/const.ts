@@ -27,7 +27,7 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Films = '/films',
   Film = '/films/:id',
-  SimilarFilm = '/films/:id/similar',
+  SimilarFilm = '/films/',
   PromoFilm = '/promo',
   Favorite = '/favorite',
   FavoriteStatus= '/favorite/:id/status',
@@ -140,6 +140,14 @@ export const PROMO_FILM = {
   isFavorite: false,
   videoLink: 'https://9.react.pages.academy/static/film/video/matrix.mp4',
   previewVideoLink: 'https://9.react.pages.academy/static/film/video/dog.mp4',
+};
+
+export const SCORE_FILM = {
+  Bad: 'Bad',
+  Normal: 'Normal',
+  Good: 'Good',
+  VeryGood: 'Very good',
+  Awesome: 'Awesome',
 };
 
 

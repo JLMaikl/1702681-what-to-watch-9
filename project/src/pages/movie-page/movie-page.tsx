@@ -11,8 +11,9 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AppRoute } from '../../const';
 import { store } from '../../store';
-import { fetchRewievAction } from '../../store/api-actions';
+import { fetchRewievAction, fetchSimilarFilmAction } from '../../store/api-actions';
 import { AuthorizationStatus } from '../../const';
+import SimilarFilmCard from './similar-films/similar-film-card.tsx/similar-film-card';
 
 
 type Props = {
@@ -22,13 +23,15 @@ type Props = {
 function MoviePage({ catalogFilms }: Props): JSX.Element {
   const { id } = useParams();
 
+
   useEffect(() => {
     if (id !== undefined) {
       store.dispatch(fetchRewievAction(+id));
+      store.dispatch(fetchSimilarFilmAction(+id));
     }
   }, [id]);
 
-  const { film, review, authorizationStatus } = useAppSelector((state) => state);
+  const { film, review, authorizationStatus, similarFilms } = useAppSelector((state) => state);
 
   return (
     <>
@@ -70,7 +73,7 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
                 </button>
                 {authorizationStatus === AuthorizationStatus.Auth ?
                   <Link to={`${AppRoute.Film}${film.id}/review`} className='btn film-card__button'>Add review</Link>
-                  : null}
+                  : <Link to={AppRoute.Login} className='btn film-card__button'>Add review</Link>}
               </div>
 
             </div>
@@ -100,7 +103,7 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
           <h2 className='catalog__title'>More like this</h2>
 
           <div className='catalog__films-list'>
-            <SmallFilmCard catalogFilms={catalogFilms} />
+            <SmallFilmCard catalogFilms={similarFilms} />
           </div>
         </section>
 

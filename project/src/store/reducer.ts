@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { checkGenre, loadFilms, requireAuthorization, setError, loadPromoFilm, checkActiveItem, loadReviews, checkFilm, addReviewAction, addRatingAction } from './action';
+import { checkGenre, loadFilms, requireAuthorization, setError, loadPromoFilm, checkActiveItem, loadReviews, checkFilm, addReviewAction, addRatingAction, loadSimilarFilms } from './action';
 import { AuthorizationStatus, PROMO_FILM } from '../const';
 import { FilmType } from '../types/types';
 import { Review } from '../types/review';
@@ -9,6 +9,7 @@ type InitialState = {
   films: FilmType[],
   film: FilmType,
   promoFilm: FilmType,
+  similarFilms: FilmType[],
   review: Review[],
   addRating: number,
   addReview: string,
@@ -22,6 +23,7 @@ const initialState: InitialState = {
   films: [],
   film: PROMO_FILM,
   promoFilm: PROMO_FILM,
+  similarFilms: [],
   review: [],
   addRating: 0,
   addReview: '',
@@ -37,6 +39,10 @@ const reducer = createReducer(initialState, (builder) => {
       state.activeGenre = action.payload ;
     })
     .addCase(loadFilms, (state, action) => {
+      state.films = action.payload;
+      state.isDataLoaded = true;
+    })
+    .addCase(loadSimilarFilms, (state, action) => {
       state.films = action.payload;
       state.isDataLoaded = true;
     })

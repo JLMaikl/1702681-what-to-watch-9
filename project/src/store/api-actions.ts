@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { FilmType } from '../types/types';
 import { Review } from '../types/review';
-import { loadFilms, requireAuthorization, setError, loadPromoFilm, loadReviews, addReviewAction, addRatingAction } from './action';
+import { loadFilms, requireAuthorization, setError, loadPromoFilm, loadReviews, addReviewAction, addRatingAction, loadSimilarFilms } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { AuthorizationStatus, APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -24,10 +24,10 @@ export const clearErrorAction = createAsyncThunk(
 
 export const fetchSimilarFilmAction = createAsyncThunk(
   'data/fetchSimilarFilm',
-  async () => {
+  async (filmId: number) => {
     try {
-      const { data } = await api.get<FilmType[]>(APIRoute.SimilarFilm);
-      store.dispatch(loadFilms(data));
+      const { data } = await api.get<FilmType[]>(`${APIRoute.SimilarFilm}${filmId}/similar`);
+      store.dispatch(loadSimilarFilms(data));
     } catch (error) {
       errorHandle(error);
     }
@@ -124,11 +124,11 @@ export const logoutAction = createAsyncThunk(
 
 export const addNewReviewAction = createAsyncThunk(
   'data/sendNewReview',
-  async (id: number, { rating, comment }: SendReview) => {
+  async ({id, rating, comment }: SendReview) => {
     try {
       await api.post<SendReview>(`${APIRoute.Comments}${id}`, { rating, comment });
-      store.dispatch(addReviewAction(''));
-      store.dispatch(addRatingAction(0));
+      store.dispatch(addReviewAction(comment));
+      store.dispatch(addRatingAction(rating));
     } catch (error) {
       errorHandle(error);
     }

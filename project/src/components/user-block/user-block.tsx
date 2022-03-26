@@ -1,4 +1,4 @@
-import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { useNavigate, Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ function UserBlock() {
 
   const handleUserLogOutClick = () => {
     dispatch(logoutAction());
-    navigate(APIRoute.Login);
+    navigate(AppRoute.Login);
   };
 
   return (
@@ -21,7 +21,7 @@ function UserBlock() {
         authorizationStatus === AuthorizationStatus.Auth ?
           <>
             <li className='user-block__item'>
-              <div className='user-block__avatar'>
+              <div className='user-block__avatar' onClick={() => navigate(AppRoute.MyList)}>
                 <img
                   src='img/avatar.jpg'
                   alt='User avatar'
