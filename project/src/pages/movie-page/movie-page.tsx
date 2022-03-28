@@ -13,7 +13,6 @@ import { AppRoute } from '../../const';
 import { store } from '../../store';
 import { fetchRewievAction, fetchSimilarFilmAction } from '../../store/api-actions';
 import { AuthorizationStatus } from '../../const';
-import SimilarFilmCard from './similar-films/similar-film-card.tsx/similar-film-card';
 
 
 type Props = {
@@ -32,7 +31,7 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
   }, [id]);
 
   const { film, review, authorizationStatus, similarFilms } = useAppSelector((state) => state);
-
+  console.log(similarFilms)
   return (
     <>
       <section className='film-card film-card--full'>

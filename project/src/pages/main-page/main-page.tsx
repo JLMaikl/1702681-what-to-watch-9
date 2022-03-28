@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/header';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
@@ -13,8 +14,11 @@ type Props = {
 };
 
 function MainPage({ catalogFilms }: Props): JSX.Element {
-  const { promoFilm, authorizationStatus } = useAppSelector((state) => state);
+  const { promoFilm, authorizationStatus, films, similarFilms } = useAppSelector((state) => state);
   const navigate = useNavigate();
+
+  console.log(films)
+  console.log(similarFilms)
 
   return (
     <>
@@ -79,7 +83,7 @@ function MainPage({ catalogFilms }: Props): JSX.Element {
 
           <div className='catalog__films-list'>
 
-            <SmallFilmCard catalogFilms={catalogFilms} />
+            <SmallFilmCard catalogFilms={films} />
 
           </div>
 

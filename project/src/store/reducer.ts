@@ -43,7 +43,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.isDataLoaded = true;
     })
     .addCase(loadSimilarFilms, (state, action) => {
-      state.films = action.payload;
+      state.similarFilms = action.payload;
       state.isDataLoaded = true;
     })
     .addCase(loadPromoFilm, (state, action) => {
