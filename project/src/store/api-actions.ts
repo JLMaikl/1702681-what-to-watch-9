@@ -135,7 +135,7 @@ export const fetchFavoriteAction = createAsyncThunk(
     }
   },
 );
-fetchFavoriteAction()
+
 export const fetchChangeFavoriteStatusAction = createAsyncThunk(
   'data/changeFavoriteFilmStatus',
   async ({id, status}: {id: number, status: number | boolean}) => {

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { fetchChangeFavoriteStatusAction } from '../../store/api-actions';
+import { fetchChangeFavoriteStatusAction, fetchFilmsAction, fetchFavoriteAction } from '../../store/api-actions';
 import { store } from '../../store';
 import { FilmType } from '../../types/types';
 
@@ -11,9 +11,17 @@ type FavoriteFilmsProps = {
 }
 
 function FavoriteFilms({ id, isFavorite, film }: FavoriteFilmsProps) {
+  console.log(film)
 
-  const [isFavoritStatus, setIsFavoritStatus] = useState<boolean | number>(isFavorite);
+  const [isFavoritStatus, setIsFavoritStatus] = useState<boolean | number>(false);
+  const [isFavoritState, setIsFavoritState] = useState<boolean | number>(false);
   let isFavoriteStatusNumber = 0;
+  console.log(isFavoritState)
+
+  useEffect(() => {
+    store.dispatch(fetchFavoriteAction());
+    setIsFavoritState(film.isFavorite)
+  }, [isFavoritStatus]);
 
   const favoriteButtonClick = () => {
     isFavoriteStatusNumber = isFavoritStatus ? 0 : 1;
@@ -25,7 +33,7 @@ function FavoriteFilms({ id, isFavorite, film }: FavoriteFilmsProps) {
   return (
     <button onClick={favoriteButtonClick} className='btn btn--list film-card__button' type='button'>
       <svg viewBox='0 0 19 20' width='19' height='20'>
-        <use xlinkHref={isFavoritStatus ? '#in-list' : '#add'}></use>
+        <use xlinkHref={isFavoritState ? '#in-list' : '#add'}></use>
       </svg>
       <span>My list</span>
     </button>
