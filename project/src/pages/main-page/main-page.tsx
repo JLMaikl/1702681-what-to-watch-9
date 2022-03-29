@@ -4,21 +4,13 @@ import Header from '../../components/header/header';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import CatalogGenresItem from '../../components/catalog-genres-item/catalog-genres-item';
 import Footer from '../../components/footer/footer';
-import { FilmType } from '../../types/types';
-import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 
-type Props = {
-  catalogFilms: FilmType[];
-};
-
-function MainPage({ catalogFilms }: Props): JSX.Element {
-  const { promoFilm, authorizationStatus, films, similarFilms } = useAppSelector((state) => state);
+function MainPage(): JSX.Element {
+  const { promoFilm, films, film, isFavorite } = useAppSelector((state) => state);
   const navigate = useNavigate();
-
-  console.log(films)
-  console.log(similarFilms)
 
   return (
     <>
@@ -60,12 +52,7 @@ function MainPage({ catalogFilms }: Props): JSX.Element {
                   <span>Play</span>
                 </button>
 
-                <button onClick={() => {authorizationStatus === AuthorizationStatus.Auth ? navigate(AppRoute.MyList) : navigate(AppRoute.Login) ;}} className='btn btn--list film-card__button' type='button'>
-                  <svg viewBox='0 0 19 20' width='19' height='20'>
-                    <use xlinkHref='#add'></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <FavoriteButton id={film.id} film={film} isFavorite={isFavorite}/>
 
               </div>
             </div>

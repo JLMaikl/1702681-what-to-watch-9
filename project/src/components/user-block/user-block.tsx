@@ -1,7 +1,10 @@
+/* eslint-disable no-console */
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { useNavigate, Link } from 'react-router-dom';
+import { fetchFavoriteAction } from '../../store/api-actions';
+import { store } from '../../store';
 
 
 function UserBlock() {
@@ -15,13 +18,18 @@ function UserBlock() {
     navigate(AppRoute.Login);
   };
 
+  const getFavoriteFilms = () => {
+    store.dispatch(fetchFavoriteAction());
+    navigate(AppRoute.MyList);
+  };
+
   return (
     <ul className='user-block'>
       {
         authorizationStatus === AuthorizationStatus.Auth ?
           <>
             <li className='user-block__item'>
-              <div className='user-block__avatar' onClick={() => navigate(AppRoute.MyList)}>
+              <div className='user-block__avatar' onClick={getFavoriteFilms}>
                 <img
                   src='img/avatar.jpg'
                   alt='User avatar'

@@ -10,6 +10,10 @@ export const loadFilms = createAction<FilmType[]>('data/loadFilms');
 
 export const loadSimilarFilms = createAction<FilmType[]>('data/loadSimilarFilms');
 
+export const loadFavoriteFilms = createAction<FilmType[]>('data/loadFavoriteFilms');
+
+export const isFavoriteFilm = createAction<boolean>('data/isFavoriteFilm');
+
 export const loadReviews = createAction<Review[]>('data/loadReview');
 
 export const addReviewAction = createAction<string>('data/addReview');

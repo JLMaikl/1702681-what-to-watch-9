@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { checkGenre, loadFilms, requireAuthorization, setError, loadPromoFilm, checkActiveItem, loadReviews, checkFilm, addReviewAction, addRatingAction, loadSimilarFilms } from './action';
+import { checkGenre, loadFilms, requireAuthorization, setError, loadPromoFilm, checkActiveItem, loadReviews, checkFilm, addReviewAction, addRatingAction, loadSimilarFilms, loadFavoriteFilms, isFavoriteFilm } from './action';
 import { AuthorizationStatus, PROMO_FILM } from '../const';
 import { FilmType } from '../types/types';
 import { Review } from '../types/review';
@@ -10,6 +10,8 @@ type InitialState = {
   film: FilmType,
   promoFilm: FilmType,
   similarFilms: FilmType[],
+  favoriteFilms: FilmType[],
+  isFavorite: boolean,
   review: Review[],
   addRating: number,
   addReview: string,
@@ -24,6 +26,8 @@ const initialState: InitialState = {
   film: PROMO_FILM,
   promoFilm: PROMO_FILM,
   similarFilms: [],
+  favoriteFilms: [],
+  isFavorite: false,
   review: [],
   addRating: 0,
   addReview: '',
@@ -44,6 +48,14 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadSimilarFilms, (state, action) => {
       state.similarFilms = action.payload;
+      state.isDataLoaded = true;
+    })
+    .addCase(loadFavoriteFilms, (state, action) => {
+      state.favoriteFilms = action.payload;
+      state.isDataLoaded = true;
+    })
+    .addCase(isFavoriteFilm, (state, action) => {
+      state.isFavorite = action.payload;
       state.isDataLoaded = true;
     })
     .addCase(loadPromoFilm, (state, action) => {

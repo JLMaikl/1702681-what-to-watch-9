@@ -13,6 +13,7 @@ import { AppRoute } from '../../const';
 import { store } from '../../store';
 import { fetchRewievAction, fetchSimilarFilmAction } from '../../store/api-actions';
 import { AuthorizationStatus } from '../../const';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 
 type Props = {
@@ -30,11 +31,11 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
     }
   }, [id]);
 
-  const { film, review, authorizationStatus, similarFilms } = useAppSelector((state) => state);
-  console.log(similarFilms)
+  const { film, review, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
+
   return (
     <>
-      <section className='film-card film-card--full'>
+      <section className='film-card film-card--full' >
         <div className='film-card__hero'>
           <div className='film-card__bg'>
             <img src={film.backgroundImage} alt={film.description} />
@@ -64,12 +65,16 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
                     <span>Play</span>
                   </Link>
                 </button>
-                <button className='btn btn--list film-card__button' type='button'>
+
+                <FavoriteButton id={film.id} film={film} isFavorite={isFavorite}/>
+
+                {/* <button className='btn btn--list film-card__button' type='button'>
                   <svg viewBox='0 0 19 20' width='19' height='20'>
                     <use xlinkHref='#add'></use>
                   </svg>
                   <span>My list</span>
-                </button>
+                </button> */}
+
                 {authorizationStatus === AuthorizationStatus.Auth ?
                   <Link to={`${AppRoute.Film}${film.id}/review`} className='btn film-card__button'>Add review</Link>
                   : <Link to={AppRoute.Login} className='btn film-card__button'>Add review</Link>}

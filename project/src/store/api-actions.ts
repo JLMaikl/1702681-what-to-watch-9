@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { FilmType } from '../types/types';
 import { Review } from '../types/review';
-import { loadFilms, requireAuthorization, setError, loadPromoFilm, loadReviews, addReviewAction, addRatingAction, loadSimilarFilms } from './action';
+import { loadFilms, requireAuthorization, setError, loadPromoFilm, loadReviews, addReviewAction, addRatingAction, loadSimilarFilms, loadFavoriteFilms, isFavoriteFilm } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { AuthorizationStatus, APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -28,18 +28,6 @@ export const fetchSimilarFilmAction = createAsyncThunk(
     try {
       const { data } = await api.get<FilmType[]>(`${APIRoute.SimilarFilm}${filmId}/similar`);
       store.dispatch(loadSimilarFilms(data));
-    } catch (error) {
-      errorHandle(error);
-    }
-  },
-);
-
-export const fetchFavoriteAction = createAsyncThunk(
-  'data/fetchFavorite',
-  async () => {
-    try {
-      const { data } = await api.get<FilmType[]>(APIRoute.Favorite);
-      store.dispatch(loadFilms(data));
     } catch (error) {
       errorHandle(error);
     }
@@ -129,6 +117,31 @@ export const addNewReviewAction = createAsyncThunk(
       await api.post<SendReview>(`${APIRoute.Comments}${id}`, { rating, comment });
       store.dispatch(addReviewAction(comment));
       store.dispatch(addRatingAction(rating));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchFavoriteAction = createAsyncThunk(
+  'data/fetchFavoriteFilms',
+  async () => {
+    try {
+      const { data } = await api.get<FilmType[]>(APIRoute.Favorite);
+      console.log(data)
+      store.dispatch(loadFavoriteFilms(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+fetchFavoriteAction()
+export const fetchChangeFavoriteStatusAction = createAsyncThunk(
+  'data/changeFavoriteFilmStatus',
+  async ({id, status}: {id: number, status: number | boolean}) => {
+    try {
+      await api.post<FilmType>(`${APIRoute.Favorite}/${id}/${status}`);
+      store.dispatch(isFavoriteFilm(false));
     } catch (error) {
       errorHandle(error);
     }

@@ -27,7 +27,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage catalogFilms={films}/>}
+          element={<MainPage />}
         />
         <Route
           path={AppRoute.Login}
@@ -39,7 +39,7 @@ function App(): JSX.Element {
             <PrivateRoute
               authorizationStatus={authorizationStatus}
             >
-              <MyList catalogFilms={films}/>
+              <MyList />
             </PrivateRoute>
           }
         />
