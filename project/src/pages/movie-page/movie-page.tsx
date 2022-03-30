@@ -6,11 +6,10 @@ import Footer from '../../components/footer/footer';
 import { FilmType } from '../../types/types';
 import FilmCardInfo from './film-card-info/film-card-info';
 import FilmNavList from './film-nav-list/film-nav-list';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AppRoute } from '../../const';
-import { store } from '../../store';
 import { fetchRewievAction, fetchSimilarFilmAction } from '../../store/api-actions';
 import { AuthorizationStatus } from '../../const';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
@@ -22,14 +21,15 @@ type Props = {
 
 function MoviePage({ catalogFilms }: Props): JSX.Element {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
 
 
   useEffect(() => {
     if (id !== undefined) {
-      store.dispatch(fetchRewievAction(+id));
-      store.dispatch(fetchSimilarFilmAction(+id));
+      dispatch(fetchRewievAction(+id));
+      dispatch(fetchSimilarFilmAction(+id));
     }
-  }, [id]);
+  }, [dispatch, id]);
 
   const { film, review, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
 

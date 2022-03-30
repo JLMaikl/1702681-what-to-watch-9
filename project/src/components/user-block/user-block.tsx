@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { useNavigate, Link } from 'react-router-dom';
 import { fetchFavoriteAction } from '../../store/api-actions';
-import { store } from '../../store';
 
 
 function UserBlock() {
@@ -19,7 +18,7 @@ function UserBlock() {
   };
 
   const getFavoriteFilms = () => {
-    store.dispatch(fetchFavoriteAction());
+    dispatch(fetchFavoriteAction());
     navigate(AppRoute.MyList);
   };
 

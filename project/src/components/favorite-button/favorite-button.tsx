@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { fetchChangeFavoriteStatusAction, fetchFilmsAction, fetchFavoriteAction } from '../../store/api-actions';
-import { store } from '../../store';
+import { fetchChangeFavoriteStatusAction, fetchFavoriteAction } from '../../store/api-actions';
 import { FilmType } from '../../types/types';
+import { useAppDispatch } from '../../hooks';
 
 type FavoriteFilmsProps = {
   id: number;
@@ -10,23 +10,22 @@ type FavoriteFilmsProps = {
   film: FilmType;
 }
 
-function FavoriteFilms({ id, isFavorite, film }: FavoriteFilmsProps) {
-  console.log(film)
+function FavoriteButton({ id, isFavorite, film }: FavoriteFilmsProps) {
 
-  const [isFavoritStatus, setIsFavoritStatus] = useState<boolean | number>(false);
+  // const [isFavoritStatus, setIsFavoritStatus] = useState<boolean | number>(false);
   const [isFavoritState, setIsFavoritState] = useState<boolean | number>(false);
   let isFavoriteStatusNumber = 0;
-  console.log(isFavoritState)
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    store.dispatch(fetchFavoriteAction());
-    setIsFavoritState(film.isFavorite)
-  }, [isFavoritStatus]);
+    dispatch(fetchFavoriteAction());
+    setIsFavoritState(film.isFavorite);},
+  [dispatch, film.isFavorite, film]);
 
   const favoriteButtonClick = () => {
-    isFavoriteStatusNumber = isFavoritStatus ? 0 : 1;
-    setIsFavoritStatus(!!isFavoriteStatusNumber);
-    store.dispatch(fetchChangeFavoriteStatusAction({id, status: isFavoriteStatusNumber}));
+    setIsFavoritState((prevIsFavoritState) => !prevIsFavoritState);
+    isFavoriteStatusNumber = isFavoritState ? 0 : 1;
+    dispatch(fetchChangeFavoriteStatusAction({id, status: isFavoriteStatusNumber}));
   };
 
 
@@ -40,6 +39,6 @@ function FavoriteFilms({ id, isFavorite, film }: FavoriteFilmsProps) {
   );
 }
 
-export default FavoriteFilms;
+export default FavoriteButton;
 
 

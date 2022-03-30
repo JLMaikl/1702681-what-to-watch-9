@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
-import { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { RATING_VALUE } from '../../../const';
 import { useDispatch } from 'react-redux';
@@ -24,8 +23,7 @@ function AddReviewForm(): JSX.Element {
 
   const addUserReview = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log(12342)
-    addNewReviewAction({id: Number(id), rating: ratingState, comment: reviewState});
+    dispatch(addNewReviewAction({id: Number(id), rating: ratingState, comment: reviewState}));
   };
 
   return (
@@ -37,7 +35,7 @@ function AddReviewForm(): JSX.Element {
             {
               RATING_VALUE.map((item) => (
                 <div key={item.value}>
-                  <input className='rating__input' id={`star-${item.value}`} type='radio' name='rating' value={item.value} onChange={(evt) => setRatingInput(Number(evt.target.value))}/>
+                  <input className='rating__input' id={`star-${item.value}`} type='radio' name='rating' value={item.value} onChange={(evt) => setRatingInput(Number(evt.target.value))} checked={Math.round(ratingState) === item.value}/>
                   <label className='rating__label' htmlFor={`star-${item.value}`} >Rating `${item.value}` </label>
                 </div>
               ))
