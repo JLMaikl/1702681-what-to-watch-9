@@ -3,7 +3,6 @@ import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
-import { FilmType } from '../../types/types';
 import FilmCardInfo from './film-card-info/film-card-info';
 import FilmNavList from './film-nav-list/film-nav-list';
 import { useAppSelector, useAppDispatch } from '../../hooks';
@@ -14,12 +13,7 @@ import { fetchRewievAction, fetchSimilarFilmAction } from '../../store/api-actio
 import { AuthorizationStatus } from '../../const';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
 
-
-type Props = {
-  catalogFilms: FilmType[];
-};
-
-function MoviePage({ catalogFilms }: Props): JSX.Element {
+function MoviePage(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
@@ -67,13 +61,6 @@ function MoviePage({ catalogFilms }: Props): JSX.Element {
                 </button>
 
                 <FavoriteButton id={film.id} film={film} isFavorite={isFavorite}/>
-
-                {/* <button className='btn btn--list film-card__button' type='button'>
-                  <svg viewBox='0 0 19 20' width='19' height='20'>
-                    <use xlinkHref='#add'></use>
-                  </svg>
-                  <span>My list</span>
-                </button> */}
 
                 {authorizationStatus === AuthorizationStatus.Auth ?
                   <Link to={`${AppRoute.Film}${film.id}/review`} className='btn film-card__button'>Add review</Link>

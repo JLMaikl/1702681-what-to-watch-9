@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
@@ -14,7 +13,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 
 
 function App(): JSX.Element {
-  const {authorizationStatus, isDataLoaded, films} = useAppSelector((state) => state);
+  const {authorizationStatus, isDataLoaded } = useAppSelector((state) => state);
 
   if(!isDataLoaded) {
     return (
@@ -45,7 +44,7 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Films}
-          element={<MoviePage catalogFilms={films}/>}
+          element={<MoviePage />}
         />
         <Route
           path={AppRoute.Filmsreview}

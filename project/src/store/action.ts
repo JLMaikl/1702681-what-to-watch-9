@@ -6,6 +6,8 @@ import { Review } from '../types/review';
 
 export const checkGenre = createAction<string>('data/activeGenre');
 
+export const setCountFilms = createAction<number>('data/countFilms');
+
 export const loadFilms = createAction<FilmType[]>('data/loadFilms');
 
 export const loadSimilarFilms = createAction<FilmType[]>('data/loadSimilarFilms');

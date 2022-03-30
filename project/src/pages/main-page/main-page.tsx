@@ -1,16 +1,30 @@
-/* eslint-disable no-console */
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Header from '../../components/header/header';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import CatalogGenresItem from '../../components/catalog-genres-item/catalog-genres-item';
 import Footer from '../../components/footer/footer';
 import { useAppSelector } from '../../hooks';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
+import { setCountFilms } from '../../store/action';
 
 
 function MainPage(): JSX.Element {
+  const [ countFilmsState, setCountFimsState ] = useState(8);
+  const dispatch = useDispatch();
   const { promoFilm, films, film, isFavorite } = useAppSelector((state) => state);
   const navigate = useNavigate();
+
+  const setCountFilmsButton = () => {
+    setCountFimsState(countFilmsState + 8);
+    dispatch(setCountFilms(countFilmsState + 8));
+
+  };
+
+  useEffect(() => {
+    dispatch(setCountFilms(8));},
+  [film]);
 
   return (
     <>
@@ -74,11 +88,13 @@ function MainPage(): JSX.Element {
 
           </div>
 
-          <div className='catalog__more'>
-            <button className='catalog__button' type='button'>
+          { countFilmsState < films.length ?
+            <div className='catalog__more'>
+              <button className='catalog__button' type='button' onClick={setCountFilmsButton}>
               Show more
-            </button>
-          </div>
+              </button>
+            </div>
+            : null }
         </section>
 
         <Footer />

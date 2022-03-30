@@ -7,8 +7,6 @@ import Footer from '../../components/footer/footer';
 
 function MyList(): JSX.Element {
   const { favoriteFilms } = useAppSelector((state) => state);
-  console.log(favoriteFilms)
-
   return (
     <div className='user-page'>
       <header className='page-header user-page__head'>

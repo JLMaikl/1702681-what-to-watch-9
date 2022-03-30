@@ -113,8 +113,6 @@ export const fetchRewievAction = createAsyncThunk(
 export const addNewReviewAction = createAsyncThunk(
   'data/sendNewReview',
   async ({id, rating, comment }: SendReview) => {
-
-    console.log({id, rating, comment })
     try {
       await api.post<SendReview>(`${APIRoute.Comments}${id}`, { rating, comment });
       store.dispatch(addReviewAction(comment));
