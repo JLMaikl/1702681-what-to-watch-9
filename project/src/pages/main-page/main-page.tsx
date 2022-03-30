@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -13,14 +14,24 @@ import { setCountFilms } from '../../store/action';
 function MainPage(): JSX.Element {
   const [ countFilmsState, setCountFimsState ] = useState(8);
   const dispatch = useDispatch();
-  const { promoFilm, films, film, isFavorite } = useAppSelector((state) => state);
+  const { promoFilm, films, film, isFavorite, activeGenre, countFilm } = useAppSelector((state) => state);
   const navigate = useNavigate();
+  let countGenreFilms = films.length;
+
+  if (activeGenre !== 'All genres') {
+    const countActiveGengeFilm = films.filter((filmItem ) => filmItem.genre === activeGenre);
+    countGenreFilms = countActiveGengeFilm.length;
+  }
 
   const setCountFilmsButton = () => {
     setCountFimsState(countFilmsState + 8);
     dispatch(setCountFilms(countFilmsState + 8));
-
   };
+
+  console.log(activeGenre)
+  console.log(countGenreFilms)
+  console.log(countFilmsState)
+  console.log(countFilm)
 
   useEffect(() => {
     dispatch(setCountFilms(8));},
@@ -88,7 +99,7 @@ function MainPage(): JSX.Element {
 
           </div>
 
-          { countFilmsState < films.length ?
+          { countFilmsState < countGenreFilms ?
             <div className='catalog__more'>
               <button className='catalog__button' type='button' onClick={setCountFilmsButton}>
               Show more
