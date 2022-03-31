@@ -1,14 +1,11 @@
+import { useAppSelector } from '../../hooks';
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
-import { FilmType } from '../../types/types';
 
-type Props = {
-  catalogFilms: FilmType[];
-};
-
-function MyList({catalogFilms}: Props): JSX.Element {
+function MyList(): JSX.Element {
+  const { favoriteFilms } = useAppSelector((state) => state);
   return (
     <div className='user-page'>
       <header className='page-header user-page__head'>
@@ -23,7 +20,7 @@ function MyList({catalogFilms}: Props): JSX.Element {
         <h2 className='catalog__title visually-hidden'>Catalog</h2>
 
         <div className='catalog__films-list'>
-          <SmallFilmCard catalogFilms={catalogFilms}/>
+          <SmallFilmCard catalogFilms={favoriteFilms}/>
         </div>
       </section>
 

@@ -1,8 +1,8 @@
-// import { Link } from 'react-router-dom';
-import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { useNavigate, Link } from 'react-router-dom';
+import { fetchFavoriteAction } from '../../store/api-actions';
 
 
 function UserBlock() {
@@ -13,7 +13,12 @@ function UserBlock() {
 
   const handleUserLogOutClick = () => {
     dispatch(logoutAction());
-    navigate(APIRoute.Login);
+    navigate(AppRoute.Login);
+  };
+
+  const getFavoriteFilms = () => {
+    dispatch(fetchFavoriteAction());
+    navigate(AppRoute.MyList);
   };
 
   return (
@@ -22,7 +27,7 @@ function UserBlock() {
         authorizationStatus === AuthorizationStatus.Auth ?
           <>
             <li className='user-block__item'>
-              <div className='user-block__avatar'>
+              <div className='user-block__avatar' onClick={getFavoriteFilms}>
                 <img
                   src='img/avatar.jpg'
                   alt='User avatar'

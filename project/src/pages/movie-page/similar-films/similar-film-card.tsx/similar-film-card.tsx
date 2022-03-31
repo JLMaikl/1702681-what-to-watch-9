@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
-import { FilmType } from '../../types/types';
+import { FilmType } from '../../../../types/types';
 import { useDispatch } from 'react-redux';
-import { checkFilm } from '../../store/action';
+import { checkFilm } from '../../../../store/action';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../../../const';
 
 
 type FilmCardProps = {
@@ -13,7 +13,7 @@ type FilmCardProps = {
 };
 
 
-function FilmCard(props: PropsWithChildren<FilmCardProps>): JSX.Element {
+function SimilarFilmCard(props: PropsWithChildren<FilmCardProps>): JSX.Element {
   const dispatch = useDispatch();
 
   const onClickActiveFilm = (filmActive: FilmType) => {
@@ -43,4 +43,4 @@ function FilmCard(props: PropsWithChildren<FilmCardProps>): JSX.Element {
   );
 }
 
-export default FilmCard;
+export default SimilarFilmCard;

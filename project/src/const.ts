@@ -3,8 +3,11 @@ export enum AppRoute {
   Login = '/login',
   MyList = '/mylist',
   Films = '/films/:id',
+  Film = '/films/',
   Filmsreview = '/films/:id/review',
-  Player = '/player/:id'
+  Player = '/player/:id',
+  PlayerId = '/player/',
+  MoviePageReviews = '/films/:id/rewies',
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;
@@ -24,14 +27,32 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Films = '/films',
   Film = '/films/:id',
-  SimilarFilm = '/films/:id/similar',
+  SimilarFilm = '/films/',
   PromoFilm = '/promo',
   Favorite = '/favorite',
   FavoriteStatus= '/favorite/:id/status',
-  Comments = '/comments/:id',
+  Comments = '/comments/',
   Login = '/login',
   Logout = '/logout',
 }
+
+export const filmNavLink = [
+  {
+    id: 1,
+    link: 'Overview',
+    active: 'film-nav__item--active',
+  },
+  {
+    id: 2,
+    link: 'Details',
+    active: '',
+  },
+  {
+    id: 3,
+    link: 'Reviews',
+    active: '',
+  },
+];
 
 
 export const catalogGenresItems = [
@@ -68,6 +89,39 @@ export const catalogGenresItems = [
     active: '',
   }];
 
+export const RATING_VALUE = [
+  {
+    value: 10,
+  },
+  {
+    value: 9,
+  },
+  {
+    value: 8,
+  },
+  {
+    value: 7,
+  },
+  {
+    value: 6,
+  },
+  {
+    value: 5,
+  },
+  {
+    value: 4,
+  },
+  {
+    value: 3,
+  },
+  {
+    value: 2,
+  },
+  {
+    value: 1,
+  },
+];
+
 export const PROMO_FILM = {
   name: 'War of the Worlds',
   posterImage: 'https://9.react.pages.academy/static/film/poster/War_of_the_Worlds.jpg',
@@ -87,4 +141,13 @@ export const PROMO_FILM = {
   videoLink: 'https://9.react.pages.academy/static/film/video/matrix.mp4',
   previewVideoLink: 'https://9.react.pages.academy/static/film/video/dog.mp4',
 };
+
+export const SCORE_FILM = {
+  Bad: 'Bad',
+  Normal: 'Normal',
+  Good: 'Good',
+  VeryGood: 'Very good',
+  Awesome: 'Awesome',
+};
+
 

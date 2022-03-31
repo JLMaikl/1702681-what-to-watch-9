@@ -1,28 +1,43 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Header from '../../components/header/header';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import CatalogGenresItem from '../../components/catalog-genres-item/catalog-genres-item';
 import Footer from '../../components/footer/footer';
-import { FilmType } from '../../types/types';
-import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
+import { setCountFilms } from '../../store/action';
 
 
-type Props = {
-  catalogFilms: FilmType[];
-};
-
-function MainPage({ catalogFilms }: Props): JSX.Element {
-  const { promoFilm } = useAppSelector((state) => state);
+function MainPage(): JSX.Element {
+  const [ countFilmsState, setCountFimsState ] = useState(8);
+  const dispatch = useDispatch();
+  const { promoFilm, films, film, isFavorite, activeGenre } = useAppSelector((state) => state);
   const navigate = useNavigate();
+  let countGenreFilms = films.length;
+
+  if (activeGenre !== 'All genres') {
+    const countActiveGengeFilm = films.filter((filmItem ) => filmItem.genre === activeGenre);
+    countGenreFilms = countActiveGengeFilm.length;
+  }
+
+  const setCountFilmsButton = () => {
+    setCountFimsState(countFilmsState + 8);
+    dispatch(setCountFilms(countFilmsState + 8));
+  };
+
+  useEffect(() => {
+    dispatch(setCountFilms(8));},
+  [film]);
 
   return (
     <>
       <section className='film-card'>
         <div className='film-card__bg'>
           <img
-            src='img/bg-the-grand-budapest-hotel.jpg'
-            alt='The Grand Budapest Hotel'
+            src={promoFilm.backgroundImage}
+            alt={promoFilm.description}
           />
         </div>
 
@@ -34,8 +49,8 @@ function MainPage({ catalogFilms }: Props): JSX.Element {
           <div className='film-card__info'>
             <div className='film-card__poster'>
               <img
-                src='img/the-grand-budapest-hotel-poster.jpg'
-                alt='The Grand Budapest Hotel poster'
+                src={promoFilm.posterImage}
+                alt={promoFilm.name}
                 width='218'
                 height='327'
               />
@@ -56,12 +71,7 @@ function MainPage({ catalogFilms }: Props): JSX.Element {
                   <span>Play</span>
                 </button>
 
-                <button onClick={() => navigate(AppRoute.MyList)} className='btn btn--list film-card__button' type='button'>
-                  <svg viewBox='0 0 19 20' width='19' height='20'>
-                    <use xlinkHref='#add'></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <FavoriteButton id={film.id} film={film} isFavorite={isFavorite}/>
 
               </div>
             </div>
@@ -79,15 +89,17 @@ function MainPage({ catalogFilms }: Props): JSX.Element {
 
           <div className='catalog__films-list'>
 
-            <SmallFilmCard catalogFilms={catalogFilms} />
+            <SmallFilmCard catalogFilms={films} />
 
           </div>
 
-          <div className='catalog__more'>
-            <button className='catalog__button' type='button'>
+          { countFilmsState < countGenreFilms ?
+            <div className='catalog__more'>
+              <button className='catalog__button' type='button' onClick={setCountFilmsButton}>
               Show more
-            </button>
-          </div>
+              </button>
+            </div>
+            : null }
         </section>
 
         <Footer />
