@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { FilmType } from '../types/types';

@@ -1,14 +1,8 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { FilmType } from '../../../types/types';
 import { useAppSelector } from '../../../hooks';
 import PlayerCart from '../../../components/player-cart/player-cart';
-import SimilarFilmCard from './similar-film-card.tsx/similar-film-card';;
-
-type Props = {
-  catalogFilms: FilmType[];
-};
-
+import SimilarFilmCard from './similar-film-card.tsx/similar-film-card';
 
 function SmallFilmCard(): JSX.Element {
   const { similarFilms } = useAppSelector((state) => state);

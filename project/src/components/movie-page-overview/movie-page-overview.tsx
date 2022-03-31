@@ -1,27 +1,11 @@
 import { FilmType } from '../../types/types';
-import { SCORE_FILM } from '../../const';
+import getScoreFilm from '../../utils/get-score-film';
 
 type MoviePageOverviewProps = {
   film: FilmType;
 };
 
-const getScoreFilm = (rating: number) => {
-  if (rating < 3) {
-    return SCORE_FILM.Bad;
-  }
-  if (rating < 5) {
-    return SCORE_FILM.Normal;
-  }
-  if (rating < 8) {
-    return SCORE_FILM.Good;
-  }
-  if (rating < 10) {
-    return SCORE_FILM.VeryGood;
-  }
-  return SCORE_FILM.Awesome;
-};
-
-function MoviePageOverview({film}: MoviePageOverviewProps): JSX.Element {
+function MoviePageOverview({ film }: MoviePageOverviewProps): JSX.Element {
   return (
     <>
       <div className='film-rating'>

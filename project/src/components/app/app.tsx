@@ -13,7 +13,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 
 
 function App(): JSX.Element {
-  const {authorizationStatus, isDataLoaded } = useAppSelector((state) => state);
+  const { authorizationStatus, isDataLoaded } = useAppSelector((state) => state);
 
   if(!isDataLoaded) {
     return (

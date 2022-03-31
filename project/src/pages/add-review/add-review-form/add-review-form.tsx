@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, ChangeEvent } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { RATING_VALUE } from '../../../const';

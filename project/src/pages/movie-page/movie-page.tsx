@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';

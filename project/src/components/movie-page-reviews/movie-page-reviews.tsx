@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Review } from '../../types/review';
 import ReviewItem from './review-item/review-item';
 
@@ -6,7 +5,7 @@ type ReviewsProps = {
   reviews: Review[];
 };
 
-function MoviePageReviews({reviews}: ReviewsProps): JSX.Element {
+function MoviePageReviews({ reviews }: ReviewsProps): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">

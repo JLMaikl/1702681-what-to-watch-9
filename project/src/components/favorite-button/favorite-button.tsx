@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { fetchChangeFavoriteStatusAction, fetchFavoriteAction } from '../../store/api-actions';
 import { FilmType } from '../../types/types';
@@ -12,7 +11,6 @@ type FavoriteFilmsProps = {
 
 function FavoriteButton({ id, isFavorite, film }: FavoriteFilmsProps) {
 
-  // const [isFavoritStatus, setIsFavoritStatus] = useState<boolean | number>(false);
   const [isFavoritState, setIsFavoritState] = useState<boolean | number>(false);
   let isFavoriteStatusNumber = 0;
   const dispatch = useAppDispatch();

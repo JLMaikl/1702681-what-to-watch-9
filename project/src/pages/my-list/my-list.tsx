@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useAppSelector } from '../../hooks';
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
