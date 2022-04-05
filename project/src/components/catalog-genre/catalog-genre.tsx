@@ -1,20 +1,24 @@
+import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
+
 type CatalogGenresItemsProps = {
   genre: string,
   active: string,
-  hendleGenreClick: (activeGenre: string) => void,
+  handleGenreClick: (activeGenre: string) => void,
 }
 
 
-function CatalogGenre({ genre, active, hendleGenreClick }: CatalogGenresItemsProps): JSX.Element {
+function CatalogGenre({ genre, active, handleGenreClick }: CatalogGenresItemsProps): JSX.Element {
+  const { activeGenre } = useAppSelector((state) => state);
 
   return (
     <li
-      className={`catalog__genres-item ${active}`}
-      onClick={() => hendleGenreClick(genre)}
+      className={`catalog__genres-item ${activeGenre === genre ? 'catalog__genres-item--active' : ''}`}
+      onClick={() => handleGenreClick(genre)}
     >
-      <a href='javascript://' className='catalog__genres-link'>
+      <Link to='#' className='catalog__genres-link'>
         {genre}
-      </a>
+      </Link>
     </li>
   );
 }

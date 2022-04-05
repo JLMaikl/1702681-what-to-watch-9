@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { RATING_VALUE } from '../../../const';
+import { RATING_VALUES } from '../../../const';
 import { useDispatch } from 'react-redux';
 import { addRatingAction } from '../../../store/action';
 import { addNewReviewAction } from '../../../store/api-actions';
@@ -33,7 +33,7 @@ function AddReviewForm(): JSX.Element {
           <div className='rating__stars'>
 
             {
-              RATING_VALUE.map((item) => (
+              RATING_VALUES.map((item) => (
                 <div key={item.value}>
                   <input className='rating__input' id={`star-${item.value}`} type='radio' name='rating' value={item.value} onChange={(evt) => setRatingInput(Number(evt.target.value))} checked={Math.round(ratingState) === item.value}/>
                   <label className='rating__label' htmlFor={`star-${item.value}`} >Rating `${item.value}` </label>

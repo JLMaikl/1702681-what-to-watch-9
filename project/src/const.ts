@@ -36,7 +36,7 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
-export const filmNavLink = [
+export const filmNavLinks = [
   {
     id: 1,
     link: 'Overview',
@@ -89,7 +89,7 @@ export const catalogGenresItems = [
     active: '',
   }];
 
-export const RATING_VALUE = [
+export const RATING_VALUES = [
   {
     value: 10,
   },

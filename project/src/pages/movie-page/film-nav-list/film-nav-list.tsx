@@ -1,4 +1,4 @@
-import { filmNavLink } from '../../../const';
+import { filmNavLinks } from '../../../const';
 import NavList from '../nav-list/nav-list';
 import { useDispatch } from 'react-redux';
 import { checkActiveItem } from '../../../store/action';
@@ -12,7 +12,7 @@ function FilmNavList(): JSX.Element {
 
   return (
     <ul className='film-nav__list'>
-      {filmNavLink.map((filmLink) => (<NavList filmLink={filmLink.link} key={filmLink.id} active={filmLink.active} handleActiveItemClick={handleActiveItemClick}/>))}
+      {filmNavLinks.map((filmLink) => (<NavList filmLink={filmLink.link} key={filmLink.id} active={filmLink.active} handleActiveItemClick={handleActiveItemClick}/>))}
     </ul>
   );
 }

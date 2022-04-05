@@ -24,7 +24,7 @@ function MoviePage(): JSX.Element {
     }
   }, [dispatch, id]);
 
-  const { film, review, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
+  const { film, reviews, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
 
   return (
     <>
@@ -81,7 +81,7 @@ function MoviePage(): JSX.Element {
                 <FilmNavList />
               </nav>
 
-              <FilmCardInfo film={film} review={review} />
+              <FilmCardInfo film={film} reviews={reviews} />
 
             </div>
           </div>

@@ -9,7 +9,7 @@ type FavoriteFilmsProps = {
   film: FilmType;
 }
 
-function FavoriteButton({ id, isFavorite, film }: FavoriteFilmsProps) {
+function FavoriteButton({ id, film }: FavoriteFilmsProps) {
 
   const [isFavoritState, setIsFavoritState] = useState<boolean | number>(false);
   let isFavoriteStatusNumber = 0;
