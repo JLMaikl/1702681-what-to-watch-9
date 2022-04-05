@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import MainPage from '../../pages/main-page/main-page';
-import AddReview from '../../pages/add-review/add-review';
+import AddReview from '../../components/add-review/add-review';
 import MyList from '../../pages/my-list/my-list';
 import MoviePage from '../../pages/movie-page/movie-page';
 import Player from '../../pages/player/player';

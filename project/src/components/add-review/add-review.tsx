@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import AddReviewForm from './add-review-form/add-review-form';
@@ -28,7 +27,7 @@ function AddReview(): JSX.Element {
                 <Link to={`${AppRoute.Film}${film.id}`} className='breadcrumbs__link'>{film.name}</Link>
               </li>
               <li className='breadcrumbs__item'>
-                <a className='breadcrumbs__link'>Add review</a>
+                <span className='breadcrumbs__link'>Add review</span>
               </li>
             </ul>
           </nav>
