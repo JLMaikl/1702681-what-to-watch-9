@@ -139,7 +139,7 @@ export const fetchChangeFavoriteStatusAction = createAsyncThunk(
   async ({id, status}: {id: number, status: number | boolean}) => {
     try {
       await api.post<FilmType>(`${APIRoute.Favorite}/${id}/${status}`);
-      store.dispatch(isFavoriteFilm(false));
+      store.dispatch(isFavoriteFilm(!!status));
     } catch (error) {
       errorHandle(error);
     }

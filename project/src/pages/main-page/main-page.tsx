@@ -18,8 +18,8 @@ function MainPage(): JSX.Element {
   let countGenreFilms = films.length;
 
   if (activeGenre !== 'All genres') {
-    const countActiveGengeFilm = films.filter((filmItem ) => filmItem.genre === activeGenre);
-    countGenreFilms = countActiveGengeFilm.length;
+    const countActiveGengeFilms = films.filter((filmItem ) => filmItem.genre === activeGenre);
+    countGenreFilms = countActiveGengeFilms.length;
   }
 
   const setCountFilmsButton = () => {
@@ -29,7 +29,7 @@ function MainPage(): JSX.Element {
 
   useEffect(() => {
     dispatch(setCountFilms(8));},
-  [film]);
+  [film, dispatch]);
 
   return (
     <>
@@ -71,7 +71,7 @@ function MainPage(): JSX.Element {
                   <span>Play</span>
                 </button>
 
-                <FavoriteButton id={film.id} film={film} isFavorite={isFavorite}/>
+                <FavoriteButton id={promoFilm.id} film={film} isFavorite={isFavorite}/>
 
               </div>
             </div>

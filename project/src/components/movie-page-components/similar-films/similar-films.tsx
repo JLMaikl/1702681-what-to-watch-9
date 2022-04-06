@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../hooks';
 import PlayerCart from '../../../components/player-cart/player-cart';
 import SimilarFilmCard from './similar-film-card.tsx/similar-film-card';
 
-function SmallFilmCard(): JSX.Element {
+function SimilarFilms(): JSX.Element {
   const { similarFilms } = useAppSelector((state) => state);
   const [filmCartInfo, setFilmCartInfo] = useState<FilmType | null>(null);
 
@@ -33,4 +33,4 @@ function SmallFilmCard(): JSX.Element {
   );
 }
 
-export default SmallFilmCard;
+export default SimilarFilms;

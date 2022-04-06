@@ -1,9 +1,10 @@
+
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
-import FilmCardInfo from './film-card-info/film-card-info';
-import FilmNavList from './film-nav-list/film-nav-list';
+import FilmCardInfo from '../../components/movie-page-components/film-card-info/film-card-info';
+import FilmNavList from '../../components/movie-page-components/film-nav-list/film-nav-list';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -16,15 +17,15 @@ function MoviePage(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
+  const { film, reviews, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
 
   useEffect(() => {
     if (id !== undefined) {
       dispatch(fetchRewievAction(+id));
       dispatch(fetchSimilarFilmAction(+id));
+
     }
   }, [dispatch, id]);
-
-  const { film, review, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
 
   return (
     <>
@@ -81,7 +82,7 @@ function MoviePage(): JSX.Element {
                 <FilmNavList />
               </nav>
 
-              <FilmCardInfo film={film} review={review} />
+              <FilmCardInfo film={film} reviews={reviews} />
 
             </div>
           </div>

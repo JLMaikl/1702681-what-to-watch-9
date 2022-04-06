@@ -32,9 +32,9 @@ function FilmCard(props: PropsWithChildren<FilmCardProps>): JSX.Element {
             {children || <img src={catalogFilm.posterImage} alt={catalogFilm.name} width='280' height='175' />}
           </div>
           <h3 className='small-film-card__title'>
-            <a className='small-film-card__link' href='film-page.html' style={{ color: '#EEE5B5' }}>
+            <span className='small-film-card__link' style={{ color: '#EEE5B5' }}>
               {catalogFilm.name}
-            </a>
+            </span>
           </h3>
         </div>
       </Link>

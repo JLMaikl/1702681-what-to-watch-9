@@ -13,7 +13,7 @@ function CatalogGenresItem() {
 
   return (
     <>{catalogGenresItems.map((catalogGenresItem) =>
-      (<CatalogGenre genre={catalogGenresItem.genre} active={catalogGenresItem.active} key={catalogGenresItem.genre} hendleGenreClick={handleGenreClick} />))}
+      (<CatalogGenre genre={catalogGenresItem.genre} active={catalogGenresItem.active} key={catalogGenresItem.genre} handleGenreClick={handleGenreClick} />))}
     </>
 
   );
