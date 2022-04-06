@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchChangeFavoriteStatusAction, fetchFavoriteAction } from '../../store/api-actions';
 import { FilmType } from '../../types/types';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type FavoriteFilmsProps = {
   id: number;
@@ -11,6 +11,8 @@ type FavoriteFilmsProps = {
 
 function FavoriteButton({ id, film }: FavoriteFilmsProps) {
 
+  const { favoriteFilms } = useAppSelector((state) => state);
+
   const [isFavoritState, setIsFavoritState] = useState<boolean | number>(false);
   let isFavoriteStatusNumber = 0;
   const dispatch = useAppDispatch();
@@ -19,6 +21,13 @@ function FavoriteButton({ id, film }: FavoriteFilmsProps) {
     dispatch(fetchFavoriteAction());
     setIsFavoritState(film.isFavorite);},
   [dispatch, film.isFavorite, film]);
+
+  useEffect(() => {
+    if (!favoriteFilms) {
+      return;
+    }
+    setIsFavoritState(favoriteFilms.find((item: FilmType) => item.id === id) ? 1 : 0);
+  }, [id, favoriteFilms]);
 
   const favoriteButtonClick = () => {
     setIsFavoritState((prevIsFavoritState) => !prevIsFavoritState);

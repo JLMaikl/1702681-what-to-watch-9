@@ -71,7 +71,7 @@ function MainPage(): JSX.Element {
                   <span>Play</span>
                 </button>
 
-                <FavoriteButton id={film.id} film={film} isFavorite={isFavorite}/>
+                <FavoriteButton id={promoFilm.id} film={film} isFavorite={isFavorite}/>
 
               </div>
             </div>

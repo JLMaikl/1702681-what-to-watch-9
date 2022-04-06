@@ -1,3 +1,4 @@
+
 import Logo from '../../components/logo/logo';
 import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import UserBlock from '../../components/user-block/user-block';
@@ -16,15 +17,15 @@ function MoviePage(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
+  const { film, reviews, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
 
   useEffect(() => {
     if (id !== undefined) {
       dispatch(fetchRewievAction(+id));
       dispatch(fetchSimilarFilmAction(+id));
+
     }
   }, [dispatch, id]);
-
-  const { film, reviews, authorizationStatus, similarFilms, isFavorite } = useAppSelector((state) => state);
 
   return (
     <>
