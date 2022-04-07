@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks';
-
+import styles from './error-message.module.css';
 
 function ErrorMessage(): JSX.Element | null {
   const { error } = useAppSelector((state) => state);
@@ -7,15 +7,7 @@ function ErrorMessage(): JSX.Element | null {
   if(error) {
     return (
       <div
-        style={{
-          position: 'fixed',
-          top: '30px',
-          right: '30px',
-          padding: '10px',
-          backgroundColor: '#d96666',
-          color: 'white',
-          borderRadius: '5px',
-        }}
+        className={styles.div}
       >
         {error}
       </div>

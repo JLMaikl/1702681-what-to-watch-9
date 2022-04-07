@@ -119,4 +119,11 @@ export const SCORE_FILM = {
   Awesome: 'Awesome',
 };
 
+export const SCORE_RATING = {
+  Bad: 3,
+  Normal: 5,
+  Good: 8,
+  VeryGood: 10,
+};
+
 

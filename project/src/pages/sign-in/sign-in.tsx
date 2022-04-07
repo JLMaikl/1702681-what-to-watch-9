@@ -30,6 +30,29 @@ function SignIn(): JSX.Element {
     }
   };
 
+  const passwordValidity = () => {
+    const REGULAR = /(?=.*[0-9])(?=.*[a-z])/g;
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      const shield =passwordRef.current;
+      const password = passwordRef.current.value;
+      shield.setCustomValidity('');
+
+      if(password.length < 2){
+        shield.setCustomValidity(
+          'Для пароля необходимо минимум 2 символа',
+        );
+      } else if(!REGULAR.test(password)){
+        shield.setCustomValidity(
+          'Для пароля необходимо минимум 1 латинская буква и 1 цифра',
+        );
+      }
+      else{
+        shield.setCustomValidity('');
+      }
+      shield.reportValidity();
+    }
+  };
 
   return (
     <div className='user-page'>
@@ -47,7 +70,7 @@ function SignIn(): JSX.Element {
               <label className='sign-in__label visually-hidden' htmlFor='user-email'>Email address</label>
             </div>
             <div className='sign-in__field'>
-              <input ref={passwordRef} className='sign-in__input' type='password' placeholder='Password' name='user-password' id='user-password' />
+              <input onChange= {() => {passwordValidity(); }} ref={passwordRef} className='sign-in__input' type='password' placeholder='Password' name='user-password' id='user-password' />
               <label className='sign-in__label visually-hidden' htmlFor='user-password'>Password</label>
             </div>
           </div>
